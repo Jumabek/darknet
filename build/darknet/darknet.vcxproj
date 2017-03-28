@@ -213,6 +213,7 @@
     <ClCompile Include="..\..\src\normalization_layer.c" />
     <ClCompile Include="..\..\src\option_list.c" />
     <ClCompile Include="..\..\src\parser.c" />
+    <ClCompile Include="..\..\src\patch_region_layer.c" />
     <ClCompile Include="..\..\src\region_layer.c" />
     <ClCompile Include="..\..\src\reorg_layer.c" />
     <ClCompile Include="..\..\src\rnn.c" />
@@ -265,6 +266,7 @@
     <ClInclude Include="..\..\src\normalization_layer.h" />
     <ClInclude Include="..\..\src\option_list.h" />
     <ClInclude Include="..\..\src\parser.h" />
+    <ClInclude Include="..\..\src\patch_region_layer.h" />
     <ClInclude Include="..\..\src\region_layer.h" />
     <ClInclude Include="..\..\src\reorg_layer.h" />
     <ClInclude Include="..\..\src\rnn_layer.h" />
