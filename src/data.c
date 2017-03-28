@@ -165,6 +165,27 @@ box_label *read_boxes(char *filename, int *n)
     return boxes;
 }
 
+patch_label *read_patches(char *filename, int *n)
+{
+	patch_label *patches = calloc(1, sizeof(patch_label));
+	FILE *file = fopen(filename, "r");
+	if (!file) file_error(filename);
+	float x, y;
+	int id;
+	int count = 0;
+	while (fscanf(file, "%d %f %f", &id, &x, &y) == 3) {
+		patches = realloc(patches, (count + 1) * sizeof(patch_label));
+		patches[count].id = id;
+		patches[count].x = x;
+		patches[count].y = y;
+		++count;
+	}
+	fclose(file);
+	*n = count;
+	return patches;
+}
+
+
 void randomize_boxes(box_label *b, int n)
 {
     int i;
@@ -720,6 +741,58 @@ data load_data_detection(int n, char **paths, int m, int w, int h, int boxes, in
     return d;
 }
 
+
+data load_data_patch_detection(int n, char **paths, int m, int w, int h, int boxes, int classes, float jitter, float hue, float saturation, float exposure)
+{
+	char **random_paths = get_random_paths(paths, n, m);
+	int i;
+	data d = { 0 };
+	d.shallow = 0;
+
+	d.X.rows = n;
+	d.X.vals = calloc(d.X.rows, sizeof(float*));
+	d.X.cols = h*w * 3;
+
+	d.y = make_matrix(n, 5 * boxes);
+	for (i = 0; i < n; ++i) {
+		image orig = load_image_color(random_paths[i], 0, 0);
+
+		int oh = orig.h;
+		int ow = orig.w;
+
+		int dw = (ow*jitter);
+		int dh = (oh*jitter);
+
+		int pleft = rand_uniform(-dw, dw);
+		int pright = rand_uniform(-dw, dw);
+		int ptop = rand_uniform(-dh, dh);
+		int pbot = rand_uniform(-dh, dh);
+
+		int swidth = ow - pleft - pright;
+		int sheight = oh - ptop - pbot;
+
+		float sx = (float)swidth / ow;
+		float sy = (float)sheight / oh;
+
+		int flip = random_gen() % 2;
+		image cropped = crop_image(orig, pleft, ptop, swidth, sheight);
+
+		float dx = ((float)pleft / ow) / sx;
+		float dy = ((float)ptop / oh) / sy;
+
+		image sized = resize_image(cropped, w, h);
+		//if (flip) flip_image(sized);
+		//random_distort_image(sized, hue, saturation, exposure);
+		d.X.vals[i] = sized.data;
+
+		fill_truth_detection(random_paths[i], boxes, d.y.vals[i], classes, flip, dx, dy, 1. / sx, 1. / sy);
+
+		free_image(orig);
+		free_image(cropped);
+	}
+	free(random_paths);
+	return d;
+}
 
 void *load_thread(void *ptr)
 {

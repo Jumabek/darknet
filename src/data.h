@@ -32,7 +32,7 @@ typedef struct{
 } data;
 
 typedef enum {
-    CLASSIFICATION_DATA, DETECTION_DATA, CAPTCHA_DATA, REGION_DATA, IMAGE_DATA, COMPARE_DATA, WRITING_DATA, SWAG_DATA, TAG_DATA, OLD_CLASSIFICATION_DATA, STUDY_DATA, DET_DATA, SUPER_DATA
+    CLASSIFICATION_DATA, DETECTION_DATA, CAPTCHA_DATA, REGION_DATA, IMAGE_DATA, COMPARE_DATA, WRITING_DATA, SWAG_DATA, TAG_DATA, OLD_CLASSIFICATION_DATA, STUDY_DATA, DET_DATA, SUPER_DATA,PATCH_DETECTION_DATA
 } data_type;
 
 typedef struct load_args{
@@ -72,6 +72,11 @@ typedef struct{
     float left, right, top, bottom;
 } box_label;
 
+typedef struct {
+	int id;
+	int x, y;
+} patch_label;
+
 void free_data(data d);
 
 pthread_t load_data(load_args args);
@@ -90,6 +95,7 @@ data load_data_augment(char **paths, int n, int m, char **labels, int k, tree *h
 data load_go(char *filename);
 
 box_label *read_boxes(char *filename, int *n);
+patch_label *read_patches(char *filename, int *n);
 data load_cifar10_data(char *filename);
 data load_all_cifar10();
 
