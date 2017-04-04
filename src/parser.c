@@ -23,6 +23,7 @@
 #include "option_list.h"
 #include "parser.h"
 #include "region_layer.h"
+#include "patch_region_layer.h"
 #include "reorg_layer.h"
 #include "rnn_layer.h"
 #include "route_layer.h"
@@ -45,6 +46,7 @@ LAYER_TYPE string_to_layer_type(char * type)
     if (strcmp(type, "[cost]")==0) return COST;
     if (strcmp(type, "[detection]")==0) return DETECTION;
     if (strcmp(type, "[region]")==0) return REGION;
+	if (strcmp(type, "[patch_region]") == 0) return PATCH_REGION;
     if (strcmp(type, "[local]")==0) return LOCAL;
     if (strcmp(type, "[conv]")==0
             || strcmp(type, "[convolutional]")==0) return CONVOLUTIONAL;
@@ -281,6 +283,36 @@ layer parse_region(list *options, size_params params)
     }
     return l;
 }
+
+layer parse_patch_region(list *options, size_params params)
+{
+	int classes = option_find_int(options, "classes", 20);
+
+	layer l = make_patch_region_layer(params.batch, params.w, params.h, classes);
+	assert(l.outputs == params.inputs);
+
+	l.log = option_find_int_quiet(options, "log", 0);
+	l.sqrt = option_find_int_quiet(options, "sqrt", 0);
+
+	l.softmax = option_find_int(options, "softmax", 0);
+	l.rescore = option_find_int_quiet(options, "rescore", 0);
+
+	l.thresh = option_find_float(options, "thresh", .5);
+	l.classfix = option_find_int_quiet(options, "classfix", 0);
+	l.absolute = option_find_int_quiet(options, "absolute", 0);
+	l.max_patches = option_find_int_quiet(options, "max_patches", l.out_w*l.out_h);
+
+	l.coord_scale = option_find_float(options, "coord_scale", 1);
+	l.object_scale = option_find_float(options, "object_scale", 1);
+	l.noobject_scale = option_find_float(options, "noobject_scale", 1);
+	l.class_scale = option_find_float(options, "class_scale", 1);
+
+	char *map_file = option_find_str(options, "map", 0);
+	if (map_file) l.map = read_map(map_file);
+
+	return l;
+}
+
 detection_layer parse_detection(list *options, size_params params)
 {
     int coords = option_find_int(options, "coords", 1);
@@ -635,6 +667,8 @@ network parse_network_cfg(char *filename)
             l = parse_cost(options, params);
         }else if(lt == REGION){
             l = parse_region(options, params);
+		}else if (lt == PATCH_REGION) {
+			l = parse_patch_region(options, params);
         }else if(lt == DETECTION){
             l = parse_detection(options, params);
         }else if(lt == SOFTMAX){
