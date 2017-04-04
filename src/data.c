@@ -173,7 +173,7 @@ patch_label *read_patches(char *filename, int *n)
 	float x, y;
 	int id;
 	int count = 0;
-	while (fscanf(file, "%d %f %f", &id, &x, &y) == 3) {
+	while (fscanf(file, "%d %d %d", &id, &x, &y) == 3) {
 		patches = realloc(patches, (count + 1) * sizeof(patch_label));
 		patches[count].id = id;
 		patches[count].x = x;
@@ -195,6 +195,17 @@ void randomize_boxes(box_label *b, int n)
         b[i] = b[index];
         b[index] = swap;
     }
+}
+
+void randomize_patches(patch_label *b, int n)
+{
+	int i;
+	for (i = 0; i < n; ++i) {
+		patch_label swap = b[i];
+		int index = random_gen() % n;
+		b[i] = b[index];
+		b[index] = swap;
+	}
 }
 
 void correct_boxes(box_label *boxes, int n, float dx, float dy, float sx, float sy, int flip)
@@ -426,6 +437,36 @@ void fill_truth(char *path, char **labels, int k, float *truth)
     if(count != 1) printf("Too many or too few labels: %d, %s\n", count, path);
 }
 
+void fill_patch_truth(char *path, float *truth)
+{
+	
+	char labelpath[4096];
+	find_replace(path, "images", "labels", labelpath);
+	find_replace(labelpath, "JPEGImages", "labels", labelpath);
+
+	find_replace(labelpath, "raw", "labels", labelpath);
+	find_replace(labelpath, ".jpg", ".txt", labelpath);
+	find_replace(labelpath, ".png", ".txt", labelpath);
+	find_replace(labelpath, ".JPG", ".txt", labelpath);
+	find_replace(labelpath, ".JPEG", ".txt", labelpath);
+	int count = 0;
+
+	patch_label *patches = read_patches(labelpath, &count);
+
+	//randomize_boxes(patches, count);
+
+	float x, y, w, h;
+	int id;
+	int i;
+
+	for (i = 0; i < count; ++i) {
+		truth[i * 3 + 0] = patches[i].x;
+		truth[i * 3 + 1] = patches[i].y;
+		truth[i * 3 + 2] = patches[i].id;
+	}
+	free(patches);
+}
+
 void fill_hierarchy(float *truth, int k, tree *hierarchy)
 {
     int j;
@@ -463,6 +504,7 @@ matrix load_labels_paths(char **paths, int n, char **labels, int k, tree *hierar
     matrix y = make_matrix(n, k);
     int i;
     for(i = 0; i < n && labels; ++i){
+
         fill_truth(paths[i], labels, k, y.vals[i]);
         if(hierarchy){
             fill_hierarchy(y.vals[i], k, hierarchy);
@@ -470,6 +512,20 @@ matrix load_labels_paths(char **paths, int n, char **labels, int k, tree *hierar
     }
     return y;
 }
+
+matrix load_labels_patches(char **paths, int n, int max_patches)
+{
+	matrix y = make_matrix(n, 3*max_patches); //each grid should contain (x,y,id)
+	int i;
+	for (i = 0; i < n; ++i) {
+		char label[4096];
+		find_replace(paths[i], "images", "labels", label);
+		find_replace(label, ".jpg", ".txt", label);
+		fill_patch_truth(label, y.vals[i]);
+	}
+	return y;
+}
+
 
 matrix load_tags_paths(char **paths, int n, int k)
 {
@@ -741,59 +797,6 @@ data load_data_detection(int n, char **paths, int m, int w, int h, int boxes, in
     return d;
 }
 
-
-data load_data_patch_detection(int n, char **paths, int m, int w, int h, int boxes, int classes, float jitter, float hue, float saturation, float exposure)
-{
-	char **random_paths = get_random_paths(paths, n, m);
-	int i;
-	data d = { 0 };
-	d.shallow = 0;
-
-	d.X.rows = n;
-	d.X.vals = calloc(d.X.rows, sizeof(float*));
-	d.X.cols = h*w * 3;
-
-	d.y = make_matrix(n, 5 * boxes);
-	for (i = 0; i < n; ++i) {
-		image orig = load_image_color(random_paths[i], 0, 0);
-
-		int oh = orig.h;
-		int ow = orig.w;
-
-		int dw = (ow*jitter);
-		int dh = (oh*jitter);
-
-		int pleft = rand_uniform(-dw, dw);
-		int pright = rand_uniform(-dw, dw);
-		int ptop = rand_uniform(-dh, dh);
-		int pbot = rand_uniform(-dh, dh);
-
-		int swidth = ow - pleft - pright;
-		int sheight = oh - ptop - pbot;
-
-		float sx = (float)swidth / ow;
-		float sy = (float)sheight / oh;
-
-		int flip = random_gen() % 2;
-		image cropped = crop_image(orig, pleft, ptop, swidth, sheight);
-
-		float dx = ((float)pleft / ow) / sx;
-		float dy = ((float)ptop / oh) / sy;
-
-		image sized = resize_image(cropped, w, h);
-		//if (flip) flip_image(sized);
-		//random_distort_image(sized, hue, saturation, exposure);
-		d.X.vals[i] = sized.data;
-
-		fill_truth_detection(random_paths[i], boxes, d.y.vals[i], classes, flip, dx, dy, 1. / sx, 1. / sy);
-
-		free_image(orig);
-		free_image(cropped);
-	}
-	free(random_paths);
-	return d;
-}
-
 void *load_thread(void *ptr)
 {
 	srand(time(0));
@@ -803,9 +806,13 @@ void *load_thread(void *ptr)
     if(a.saturation == 0) a.saturation = 1;
     if(a.aspect == 0) a.aspect = 1;
 
+	
     if (a.type == OLD_CLASSIFICATION_DATA){
         *a.d = load_data_old(a.paths, a.n, a.m, a.labels, a.classes, a.w, a.h);
-    } else if (a.type == CLASSIFICATION_DATA){
+	}
+	else if (a.type == PATCH_CLASSIFICATION_DATA) {
+		*a.d = load_data_patch(a.paths, a.n, a.m, a.w, a.h, a.num_patches);
+	} else if (a.type == CLASSIFICATION_DATA){
         *a.d = load_data_augment(a.paths, a.n, a.m, a.labels, a.classes, a.hierarchy, a.min, a.max, a.size, a.angle, a.aspect, a.hue, a.saturation, a.exposure);
     } else if (a.type == SUPER_DATA){
         *a.d = load_data_super(a.paths, a.n, a.m, a.w, a.h, a.scale);
@@ -902,6 +909,18 @@ data load_data_old(char **paths, int n, int m, char **labels, int k, int w, int 
     if(m) free(paths);
     return d;
 }
+
+data load_data_patch(char **paths, int n, int m, int w, int h,int num_patches)
+{
+	if (m) paths = get_random_paths(paths, n, m);
+	data d = { 0 };
+	d.shallow = 0;
+	d.X = load_image_paths(paths, n, w, h);
+	d.y = load_labels_patches(paths, n, num_patches);
+	if (m) free(paths);
+	return d;
+}
+
 
 /*
    data load_data_study(char **paths, int n, int m, char **labels, int k, int min, int max, int size, float angle, float aspect, float hue, float saturation, float exposure)
