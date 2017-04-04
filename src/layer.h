@@ -34,7 +34,8 @@ typedef enum {
     XNOR,
     REGION,
     REORG,
-    BLANK
+    BLANK,
+	PATCH_REGION
 } LAYER_TYPE;
 
 typedef enum{
@@ -63,6 +64,7 @@ struct layer{
     int out_h, out_w, out_c;
     int n;
     int max_boxes;
+	int max_patches;
     int groups;
     int size;
     int side;
