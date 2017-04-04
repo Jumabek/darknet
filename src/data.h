@@ -32,7 +32,7 @@ typedef struct{
 } data;
 
 typedef enum {
-    CLASSIFICATION_DATA, DETECTION_DATA, CAPTCHA_DATA, REGION_DATA, IMAGE_DATA, COMPARE_DATA, WRITING_DATA, SWAG_DATA, TAG_DATA, OLD_CLASSIFICATION_DATA, STUDY_DATA, DET_DATA, SUPER_DATA,PATCH_DETECTION_DATA
+    CLASSIFICATION_DATA, DETECTION_DATA, CAPTCHA_DATA, REGION_DATA, IMAGE_DATA, COMPARE_DATA, WRITING_DATA, SWAG_DATA, TAG_DATA, OLD_CLASSIFICATION_DATA, STUDY_DATA, DET_DATA, SUPER_DATA, PATCH_CLASSIFICATION_DATA
 } data_type;
 
 typedef struct load_args{
@@ -49,6 +49,7 @@ typedef struct load_args{
     int nh;
     int nw;
     int num_boxes;
+	int num_patches;
     int min, max, size;
     int classes;
     int background;
