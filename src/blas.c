@@ -184,15 +184,42 @@ void smooth_l1_cpu(int n, float *pred, float *truth, float *delta, float *error)
     }
 }
 
+void l2_cpu_batch(int batch,int size, float *pred, float *truth, float *delta, float *error)
+{
+    int i,j,index;
+	int non_zeros = 0;
+
+	//char temp_filename[1024] = "temp2.txt";
+	//strcpy(temp_filename, labelpath);
+	//find_replace(temp_filename, ".txt", "_temp.txt", temp_filename);
+
+	//FILE *file = fopen(temp_filename, "a+");
+
+	for (i = 0; i < batch; i++) {
+		for (j = 0; j < size; j++) {
+			index = i*size + j;
+			
+			//fprintf(file,"(i,size,j) = (%d,%d,%d) \t truth[%d] = %f\t pred[%d] = %f\n",i,size,j, index, truth[index], index, pred[index]);
+			
+			float diff = truth[index] - pred[index];
+			error[index] = diff*diff;
+			delta[index] = diff;
+		}
+	}
+
+	//fclose(file);
+}
+
 void l2_cpu(int n, float *pred, float *truth, float *delta, float *error)
 {
-    int i;
-    for(i = 0; i < n; ++i){
-        float diff = truth[i] - pred[i];
-        error[i] = diff * diff;
-        delta[i] = diff;
-    }
+	int i;
+	for (i = 0; i < n; ++i) {
+		float diff = truth[i] - pred[i];
+		error[i] = diff * diff;
+		delta[i] = diff;
+	}
 }
+
 
 float dot_cpu(int N, float *X, int INCX, float *Y, int INCY)
 {
