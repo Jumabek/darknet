@@ -31,6 +31,7 @@ extern void run_cifar(int argc, char **argv);
 extern void run_go(int argc, char **argv);
 extern void run_art(int argc, char **argv);
 extern void run_super(int argc, char **argv);
+extern void run_patch_classifier(int argc, char **argv);
 
 void average(int argc, char *argv[])
 {
@@ -369,6 +370,7 @@ int main(int argc, char **argv)
         cuda_set_device(gpu_index);
     }
 #endif
+	
 
     if (0 == strcmp(argv[1], "average")){
         average(argc, argv);
@@ -398,6 +400,8 @@ int main(int argc, char **argv)
         predict_classifier("cfg/imagenet1k.data", argv[2], argv[3], argv[4], 5);
     } else if (0 == strcmp(argv[1], "classifier")){
         run_classifier(argc, argv);
+	}else if (0 == strcmp(argv[1], "patch_classifier")) {
+		run_patch_classifier(argc, argv);
     } else if (0 == strcmp(argv[1], "art")){
         run_art(argc, argv);
     } else if (0 == strcmp(argv[1], "tag")){
