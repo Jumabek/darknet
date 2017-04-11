@@ -408,6 +408,20 @@ float sum_array(float *a, int n)
     return sum;
 }
 
+float sum_array_batch(float *a, int size,int batch)
+{
+	int i,j;
+	float sum = 0;
+	for (i = 0; i < batch; i++) {
+		for (j = 0; j < size; j++) {
+			sum+=a[i*size + j];
+		}
+	}
+
+	//for (i = 0; i < n; ++i) sum += a[i];
+	return sum;
+}
+
 float mean_array(float *a, int n)
 {
     return sum_array(a,n)/n;

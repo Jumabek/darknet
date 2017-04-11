@@ -50,6 +50,7 @@ float rand_uniform(float min, float max);
 float rand_scale(float s);
 int rand_int(int min, int max);
 float sum_array(float *a, int n);
+float sum_array_batch(float *a, int size, int batch);
 float mean_array(float *a, int n);
 void mean_arrays(float **a, int n, int els, float *avg);
 float variance_array(float *a, int n);
