@@ -1,3 +1,6 @@
+Note, This repo is forked from https://github.com/AlexeyAB/darknet
+and in addition contains my new layer implementations and custom modifications of the original darknet.
+
 # Yolo-Windows v2
 
 1. [How to use](#how-to-use)
