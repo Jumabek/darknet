@@ -104,24 +104,6 @@ void backward_patch_region_layer(const patch_region_layer l, network_state state
 
 
 
-void get_grid_predictions(const patch_region_layer l, int* scores) {
-	
-	int i, j, b;
-	
-	cuda_pull_array(l.output_gpu, l.output, l.batch*l.outputs);
-	
-	for (b = 0; b < l.batch; ++b) {
-		for (i = 0; i < l.h*l.w; ++i) {
-			int index = l.classes*i + b*l.outputs;
-			softmax(l.output + index, l.classes, 1, l.output + index);
-			int max_i = max_index(l.output + index, l.classes);
-			printf("max_index = %d\n", max_i);
-
-			scores[i + b*l.outputs] = max_i;
-		}
-	}
-}
-
 #ifdef GPU
 
 void forward_patch_region_layer_gpu(const patch_region_layer l, network_state state)
