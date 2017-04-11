@@ -157,23 +157,24 @@ void test_patch_classifier(char* datacfg, char *cfgfile, char* weightfile, char 
 	layer l = net.layers[net.n - 1];
 
 	float *X = sized.data;
-	network_predict(net, X);
+	float *predictions = network_predict(net, X);
 
-	int *predictions = calloc(l.w*l.h, sizeof(int));
-
-	get_grid_predictions(l, predictions);
-
-	int i, j;
+	int i, j,c;
 	
 	for (j = 0; j < l.h; j++){
 		for (i = 0; i < l.w; i++) {
-			int index = j*l.w + i;
-			printf("(h,w) = (%d,%d) \t score[%d] = %d\n", j, i, index, predictions[index]);
+			printf("(%d,%d) (", j, i );
+			for (c = 0; c < l.classes - 1; c++) {
+				int index = j*l.w*l.classes + i*l.classes + c;
+				printf("%f,", predictions[index]);
+			}
+			int index = j*l.w*l.classes + i*l.classes + (l.classes-1);
+			printf("%f)\n", predictions[index]);
 		}
 	}
 
-	draw_patch_detections(im, predictions, l.w, l.h, l.classes);
-	show_image(im, "predictions");
+	draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+	show_image(sized, "predictions");
 	cvWaitKey(0);
 	cvDestroyAllWindows();
 	system("pause");
@@ -229,6 +230,6 @@ void run_patch_classifier(int argc, char **argv)
 		int classes = option_find_int(options, "classes", 20);
 		char *name_list = option_find_str(options, "names", "data/names.list");
 		char **names = get_labels(name_list);
-		demo(cfg, weights, thresh, cam_index, filename, names, classes, frame_skip, prefix);
+		demo_patch_classifier(cfg, weights, thresh, cam_index, filename, names, classes, frame_skip, prefix);
 	}
 }
