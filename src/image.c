@@ -239,6 +239,7 @@ void draw_patch_detections(image im, float *predictions, int w, int h, int class
 	int blue = 255;
 	int background_cls_id = classes-1;
 	int padding = 1;
+	int width = 2;
 
 	for (j = 0; j < h; j++) {
 		for (i = 0; i < w; i++) {
@@ -253,7 +254,7 @@ void draw_patch_detections(image im, float *predictions, int w, int h, int class
 			float green = get_color(1, offset, classes);
 			float blue = get_color(0, offset, classes);
 			float rgb[3];
-			draw_box(im, i * 32 + padding, j * 32 + padding, (i + 1) * 32 - padding, (j + 1) * 32- padding, red, green, blue);
+			draw_box_width(im, i * 32 + padding, j * 32 + padding, (i + 1) * 32 - padding, (j + 1) * 32- padding,width, red, green, blue);
 		}
 	}
 
