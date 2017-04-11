@@ -169,11 +169,16 @@ patch_label *read_patches(char *filename, int *n)
 {
 	patch_label *patches = calloc(1, sizeof(patch_label));
 	FILE *file = fopen(filename, "r");
+	if (!file) {
+		printf("Could not open %s\n", filename);
+		system("pause");
+	}
 	if (!file) file_error(filename);
-	float x, y;
+	int x, y;
 	int id;
 	int count = 0;
 	while (fscanf(file, "%d %d %d", &id, &x, &y) == 3) {
+		//printf("Things read from %s are (%d,%d,%d)\n", filename, id, x, y);
 		patches = realloc(patches, (count + 1) * sizeof(patch_label));
 		patches[count].id = id;
 		patches[count].x = x;
@@ -437,9 +442,8 @@ void fill_truth(char *path, char **labels, int k, float *truth)
     if(count != 1) printf("Too many or too few labels: %d, %s\n", count, path);
 }
 
-void fill_patch_truth(char *path, float *truth)
+void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 {
-	
 	char labelpath[4096];
 	find_replace(path, "images", "labels", labelpath);
 	find_replace(labelpath, "JPEGImages", "labels", labelpath);
@@ -455,15 +459,49 @@ void fill_patch_truth(char *path, float *truth)
 
 	//randomize_boxes(patches, count);
 
-	float x, y, w, h;
-	int id;
-	int i;
+	int i,j,k;
+	int index;
+	//'classes' - 1 is a background, so we need to set it to 1 by default, 
+	//since most of our patches would be background
+	
+	for (j = 0; j < h; ++j) {
+		for (i = 0; i < w; ++i) {
+			for (k = 0; k < classes; k++) {
+				int index = j*w*classes + i*classes + k;
+				if(k == classes-1) truth[index] = 1;
+				else truth[index] = 0;
+			}
+		}
+	}
 
 	for (i = 0; i < count; ++i) {
-		truth[i * 3 + 0] = patches[i].x;
-		truth[i * 3 + 1] = patches[i].y;
-		truth[i * 3 + 2] = patches[i].id;
+		int x, y, cls_id;
+		x = patches[i].x;
+		y = patches[i].y;
+		cls_id = patches[i].id;
+
+		index = y*w*classes + x*classes + cls_id;
+			
+		truth[index] = 1;
 	}
+	char temp_filename[1024]="temp.txt" ;
+	//strcpy(temp_filename, labelpath);
+	//find_replace(temp_filename, ".txt", "_temp.txt", temp_filename);
+	
+	FILE *file = fopen(temp_filename, "a+");
+	fprintf(file, "%s\n", labelpath);
+
+	for (j = 0; j < h; ++j) {
+		for (i = 0; i < w; ++i) {
+			for (k = 0; k < classes; k++) {
+				int index = j*w*classes + i*classes + k;
+				fprintf(file,"(i,j,cls_id) = (%d,%d,%d) truth[%d]=%f\n",i,j,k, index, truth[index]);
+			}
+			fprintf(file, "\n");
+		}
+	}
+	fclose(file);
+
 	free(patches);
 }
 
@@ -513,15 +551,16 @@ matrix load_labels_paths(char **paths, int n, char **labels, int k, tree *hierar
     return y;
 }
 
-matrix load_labels_patches(char **paths, int n, int max_patches)
+matrix load_labels_patches(char **paths, int n, int classes, int grid_w, int grid_h)
 {
-	matrix y = make_matrix(n, 3*max_patches); //each grid should contain (x,y,id)
+	int size = grid_w*grid_h*classes;
+	matrix y = make_matrix(n,size); //each cell has 'classes' channel
 	int i;
 	for (i = 0; i < n; ++i) {
 		char label[4096];
 		find_replace(paths[i], "images", "labels", label);
 		find_replace(label, ".jpg", ".txt", label);
-		fill_patch_truth(label, y.vals[i]);
+		fill_grid_truth(label, y.vals[i],classes, grid_w, grid_h);
 	}
 	return y;
 }
@@ -811,7 +850,7 @@ void *load_thread(void *ptr)
         *a.d = load_data_old(a.paths, a.n, a.m, a.labels, a.classes, a.w, a.h);
 	}
 	else if (a.type == PATCH_CLASSIFICATION_DATA) {
-		*a.d = load_data_patch(a.paths, a.n, a.m, a.w, a.h, a.num_patches);
+		*a.d = load_data_patch(a.paths, a.n, a.m, a.classes,a.w,a.h, a.grid_w, a.grid_h);
 	} else if (a.type == CLASSIFICATION_DATA){
         *a.d = load_data_augment(a.paths, a.n, a.m, a.labels, a.classes, a.hierarchy, a.min, a.max, a.size, a.angle, a.aspect, a.hue, a.saturation, a.exposure);
     } else if (a.type == SUPER_DATA){
@@ -910,13 +949,13 @@ data load_data_old(char **paths, int n, int m, char **labels, int k, int w, int 
     return d;
 }
 
-data load_data_patch(char **paths, int n, int m, int w, int h,int num_patches)
+data load_data_patch(char **paths, int n, int m, int classes,int w, int h, int grid_w, int grid_h)
 {
 	if (m) paths = get_random_paths(paths, n, m);
 	data d = { 0 };
 	d.shallow = 0;
 	d.X = load_image_paths(paths, n, w, h);
-	d.y = load_labels_patches(paths, n, num_patches);
+	d.y = load_labels_patches(paths, n, classes, grid_w, grid_h);
 	if (m) free(paths);
 	return d;
 }
