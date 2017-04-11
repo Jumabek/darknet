@@ -231,7 +231,7 @@ void draw_detections(image im, int num, float thresh, box *boxes, float **probs,
 }
 
 
-void draw_patch_detections(image im, int *predictions, int w, int h, int classes)
+void draw_patch_detections(image im, float *activations, int w, int h, int classes)
 {
 	int i, j, c;
 	int red = 255;
@@ -242,8 +242,9 @@ void draw_patch_detections(image im, int *predictions, int w, int h, int classes
 
 	for (j = 0; j < h; j++) {
 		for (i = 0; i < w; i++) {
-			int class = predictions[j*w + i];
-
+			int index = j*w*classes + i*classes;
+			int class = max_index(activations+index, classes);
+			
 			if (class == background_cls_id) continue;
 				
 			int offset = class * 123457 % classes;
