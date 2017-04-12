@@ -541,9 +541,7 @@ matrix load_labels_patches(char **paths, int n, int classes, int grid_w, int gri
 	int i;
 	for (i = 0; i < n; ++i) {
 		char label[4096];
-		find_replace(paths[i], "images", "labels", label);
-		find_replace(label, ".jpg", ".txt", label);
-		fill_grid_truth(label, y.vals[i],classes, grid_w, grid_h);
+		fill_grid_truth(paths[i], y.vals[i],classes, grid_w, grid_h);
 	}
 	return y;
 }
