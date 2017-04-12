@@ -87,23 +87,6 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 		train = buffer;
 		load_thread = load_data(args);
 
-		/*
-		int k;
-		for(k = 0; k < l.max_boxes; ++k){
-		box b = float_to_box(train.y.vals[10] + 1 + k*5);
-		if(!b.x) break;
-		printf("loaded: %f %f %f %f\n", b.x, b.y, b.w, b.h);
-		}
-		image im = float_to_image(448, 448, 3, train.X.vals[10]);
-		int k;
-		for(k = 0; k < l.max_boxes; ++k){
-		box b = float_to_box(train.y.vals[10] + 1 + k*5);
-		printf("%d %d %d %d\n", truth.x, truth.y, truth.w, truth.h);
-		draw_bbox(im, b, 8, 1,0,0);
-		}
-		save_image(im, "truth11");
-		*/
-
 		printf("Loaded: %lf seconds\n", sec(clock() - time));
 
 		time = clock();
@@ -142,6 +125,86 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 }
 
 
+void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile) {
+	int i, j, index;
+	int vis_detections = 0;
+	network net = parse_network_cfg(cfgfile);
+	if (weightfile) {
+		load_weights(&net, weightfile);
+	}
+	set_batch_network(&net, 1);
+	srand(time(0));
+
+	list* options = read_data_cfg(datacfg);
+
+	char* valid_list = option_find_str(options, "valid", "data/valid.list");
+	int classes = option_find_int(options, "classes", 3);
+	list* plist = get_paths(valid_list);
+
+	int m = plist->size;
+	
+	layer l = net.layers[net.n - 1];
+
+	char **paths = (char **)list_to_array(plist);
+
+
+	clock_t time;
+	int count = 0;
+	int TP = 0;
+	int TN = 0;
+	int FP = 0;
+	int FN = 0;
+
+	int background_cls_id = l.classes-1;
+	int num_background_cls = 0;
+
+	while (count < m) {
+		time = clock();
+		printf("processing paths[%d] = %s\n", count, paths[count]);
+
+		image im = load_image_color(paths[count], 0, 0);
+		image sized = resize_image(im, net.w, net.h);
+		layer l = net.layers[net.n - 1];
+
+		float *X = sized.data;
+		float *predictions = network_predict(net, X);
+
+		float *truths = calloc(l.w*l.h*l.classes, sizeof(float));
+		fill_grid_truth(paths[count], truths, l.classes, l.w, l.h);
+
+		for (j = 0; j < l.h; j++) {
+			for (i = 0; i < l.w; i++) {
+				index = j*l.w*l.classes + i*l.classes;
+				int cls_id = max_index(truths + index, l.classes);
+
+				int prediction = max_index(predictions + index, l.classes);
+
+
+				if (prediction == background_cls_id) {
+					if (prediction == cls_id) TN++;
+					else FN++;
+				}
+				else {
+					if (prediction == cls_id) TP++;
+					else FP++;
+				}
+			
+			}
+		}
+		if (vis_detections) {
+			draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+			show_image(sized, "predictions");
+			cvWaitKey(40);
+		}
+		free(truths);
+		free_image(im);
+		free_image(sized);
+		count++;
+	}
+	printf("Precision = %f \t Recall = %f", (float)TP / (TP+FP), (float)TP/ (TP+FN));
+	system("pause");
+}
+
 
 void test_patch_classifier(char* datacfg, char *cfgfile, char* weightfile, char *filename) {
 	network net = parse_network_cfg(cfgfile);
@@ -176,6 +239,10 @@ void test_patch_classifier(char* datacfg, char *cfgfile, char* weightfile, char 
 	draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
 	show_image(sized, "predictions");
 	cvWaitKey(0);
+
+	free_image(im);
+	free_image(sized);
+
 	cvDestroyAllWindows();
 	system("pause");
 	
@@ -223,7 +290,7 @@ void run_patch_classifier(int argc, char **argv)
 	char *filename = (argc > 6) ? argv[6] : 0;
 	if (0 == strcmp(argv[2], "test")) test_patch_classifier(datacfg, cfg, weights, filename);
 	else if (0 == strcmp(argv[2], "train")) train_patch_classifier(datacfg, cfg, weights, gpus, ngpus, clear);
-	else if (0 == strcmp(argv[2], "valid")) validate_detector(datacfg, cfg, weights);
+	else if (0 == strcmp(argv[2], "valid")) validate_patch_classifier(datacfg, cfg, weights);
 	else if (0 == strcmp(argv[2], "recall")) validate_detector_recall(cfg, weights);
 	else if (0 == strcmp(argv[2], "demo")) {
 		list *options = read_data_cfg(datacfg);
