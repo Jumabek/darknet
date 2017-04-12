@@ -120,5 +120,6 @@ data *split_data(data d, int part, int total);
 data concat_data(data d1, data d2);
 data concat_datas(data *d, int n);
 void fill_truth(char *path, char **labels, int k, float *truth);
+void fill_grid_truth(char *path, float *truth, int classes, int w, int h);
 
 #endif

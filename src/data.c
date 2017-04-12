@@ -464,6 +464,7 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 	//'classes' - 1 is a background, so we need to set it to 1 by default, 
 	//since most of our patches would be background
 	
+	//initialization
 	for (j = 0; j < h; ++j) {
 		for (i = 0; i < w; ++i) {
 			for (k = 0; k < classes; k++) {
@@ -474,6 +475,7 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 		}
 	}
 
+	//filling
 	for (i = 0; i < count; ++i) {
 		int x, y, cls_id;
 		x = patches[i].x;
