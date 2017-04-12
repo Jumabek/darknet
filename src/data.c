@@ -484,24 +484,7 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 			
 		truth[index] = 1;
 	}
-	char temp_filename[1024]="temp.txt" ;
-	//strcpy(temp_filename, labelpath);
-	//find_replace(temp_filename, ".txt", "_temp.txt", temp_filename);
 	
-	FILE *file = fopen(temp_filename, "a+");
-	fprintf(file, "%s\n", labelpath);
-
-	for (j = 0; j < h; ++j) {
-		for (i = 0; i < w; ++i) {
-			for (k = 0; k < classes; k++) {
-				int index = j*w*classes + i*classes + k;
-				fprintf(file,"(i,j,cls_id) = (%d,%d,%d) truth[%d]=%f\n",i,j,k, index, truth[index]);
-			}
-			fprintf(file, "\n");
-		}
-	}
-	fclose(file);
-
 	free(patches);
 }
 
