@@ -36,7 +36,7 @@ patch_region_layer make_patch_region_layer(int batch, int w, int h, int classes)
 	l.delta_gpu = cuda_make_array(l.delta, batch*l.outputs);
 #endif
 
-	fprintf(stderr, "detection\n");
+	fprintf(stderr, "patch_region\n");
 	srand(0);
 
 	return l;
