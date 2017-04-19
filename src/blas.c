@@ -184,10 +184,11 @@ void smooth_l1_cpu(int n, float *pred, float *truth, float *delta, float *error)
     }
 }
 
-void l2_cpu_batch(int batch,int size, float *pred, float *truth, float *delta, float *error)
+void l2_cpu_batch(int batch, int size, float *pred, float *truth, float *delta, float *error, float class_scale)
 {
     int i,j,index;
 	int non_zeros = 0;
+	int back_cls_id = 2;
 
 	//char temp_filename[1024] = "temp2.txt";
 	//strcpy(temp_filename, labelpath);
@@ -202,6 +203,9 @@ void l2_cpu_batch(int batch,int size, float *pred, float *truth, float *delta, f
 			//fprintf(file,"(i,size,j) = (%d,%d,%d) \t truth[%d] = %f\t pred[%d] = %f\n",i,size,j, index, truth[index], index, pred[index]);
 			
 			float diff = truth[index] - pred[index];
+			
+			if (truth[index] != back_cls_id) diff = class_scale*diff;
+
 			error[index] = diff*diff;
 			delta[index] = diff;
 		}
