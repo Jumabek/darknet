@@ -297,14 +297,8 @@ layer parse_patch_region(list *options, size_params params)
 	l.softmax = option_find_int(options, "softmax", 0);
 	l.rescore = option_find_int_quiet(options, "rescore", 0);
 
-	l.thresh = option_find_float(options, "thresh", .5);
-	l.classfix = option_find_int_quiet(options, "classfix", 0);
-	l.absolute = option_find_int_quiet(options, "absolute", 0);
 	l.max_patches = option_find_int_quiet(options, "max_patches", l.out_w*l.out_h);
 
-	l.coord_scale = option_find_float(options, "coord_scale", 1);
-	l.object_scale = option_find_float(options, "object_scale", 1);
-	l.noobject_scale = option_find_float(options, "noobject_scale", 1);
 	l.class_scale = option_find_float(options, "class_scale", 1);
 
 	char *map_file = option_find_str(options, "map", 0);
