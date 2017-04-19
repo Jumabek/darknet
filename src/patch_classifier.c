@@ -106,7 +106,7 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 
 		i = get_current_batch(net);
 		printf("%d: %f, %f avg, %f rate, %lf seconds, %d images\n", get_current_batch(net), loss, avg_loss, get_current_rate(net), sec(clock() - time), i*imgs);
-		if (i % 1000 == 0 || (i < 1000 && i % 100 == 0)) {
+		if (i % 1000 == 0 || i<1000 && i%100==0 ) {
 #ifdef GPU
 			if (ngpus != 1) sync_nets(nets, ngpus, 0);
 #endif
@@ -125,9 +125,10 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 }
 
 
-void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile) {
+void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, float iter_in_k, char* pr_rc_filename, int vis_detections, int save_detections) {
 	int i, j, index;
-	int vis_detections = 0;
+	
+	 
 	network net = parse_network_cfg(cfgfile);
 	if (weightfile) {
 		load_weights(&net, weightfile);
@@ -196,13 +197,22 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile) {
 			show_image(sized, "predictions");
 			cvWaitKey(40);
 		}
+		if (save_detections) {
+			draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+			char str[1024] ;
+			find_replace(paths[count], "images", "detect_images", str);
+			save_image(sized, str);
+		}
+		//free(predictions);
 		free(truths);
 		free_image(im);
 		free_image(sized);
 		count++;
 	}
-	printf("Precision = %f \t Recall = %f", (float)TP / (TP+FP), (float)TP/ (TP+FN));
-	system("pause");
+	FILE * file = fopen(pr_rc_filename, "a+");
+
+	fprintf(file, "%0.1f:  %f   %f\n", iter_in_k, (float)TP / (TP+FP), (float)TP/ (TP+FN));
+
 }
 
 
@@ -254,6 +264,13 @@ void run_patch_classifier(int argc, char **argv)
 	float thresh = find_float_arg(argc, argv, "-thresh", .24);
 	int cam_index = find_int_arg(argc, argv, "-c", 0);
 	int frame_skip = find_int_arg(argc, argv, "-s", 0);
+	float iter = find_float_arg(argc, argv, "-iter", 1000);
+	float iter_in_k = iter / 1000.;
+
+	int vis_detections = find_int_arg(argc, argv, "-v_d", 0);
+	int save_detections = find_int_arg(argc, argv, "-s_d", 0);
+
+	float *pr_rc_filename = find_char_arg(argc, argv, "-pr_r_file", "log/pr_r_file.txt");
 	if (argc < 4) {
 		fprintf(stderr, "usage: %s %s [train/test/valid] [cfg] [weights (optional)]\n", argv[0], argv[1]);
 		return;
@@ -290,7 +307,7 @@ void run_patch_classifier(int argc, char **argv)
 	char *filename = (argc > 6) ? argv[6] : 0;
 	if (0 == strcmp(argv[2], "test")) test_patch_classifier(datacfg, cfg, weights, filename);
 	else if (0 == strcmp(argv[2], "train")) train_patch_classifier(datacfg, cfg, weights, gpus, ngpus, clear);
-	else if (0 == strcmp(argv[2], "valid")) validate_patch_classifier(datacfg, cfg, weights);
+	else if (0 == strcmp(argv[2], "valid")) validate_patch_classifier(datacfg, cfg, weights,iter_in_k,pr_rc_filename,vis_detections,save_detections);
 	else if (0 == strcmp(argv[2], "recall")) validate_detector_recall(cfg, weights);
 	else if (0 == strcmp(argv[2], "demo")) {
 		list *options = read_data_cfg(datacfg);
