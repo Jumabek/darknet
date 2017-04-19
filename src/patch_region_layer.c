@@ -91,8 +91,8 @@ void forward_patch_region_layer(const patch_region_layer l, network_state state)
 
 	
 
-
-	l2_cpu_batch(l.batch,l.outputs, l.output, state.truth, l.delta, l.output);
+	printf("patch region layer recieved class_scale as %f\n", l.class_scale);
+	l2_cpu_batch(l.batch,l.outputs, l.output, state.truth, l.delta, l.output,l.class_scale);
 
 	l.cost[0] = sum_array_batch(l.output, l.inputs, l.batch);
 }
