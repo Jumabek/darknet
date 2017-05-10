@@ -1,6 +1,8 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <deque>
+#include <algorithm>
 
 #ifdef OPENCV
 #include <opencv2/opencv.hpp>			// C++
@@ -18,6 +20,7 @@ struct bbox_t {
 	unsigned int x, y, w, h;	// (x,y) - top-left corner, (w, h) - width & height of bounded box
 	float prob;					// confidence - probability that the object was found correctly
 	unsigned int obj_id;		// class of object - from range [0, classes-1]
+	unsigned int track_id;		// tracking id for video (0 - untracked, 1 - inf - tracked object)
 };
 
 struct image_t {
@@ -31,6 +34,7 @@ struct image_t {
 class Detector {
 	std::shared_ptr<void> detector_gpu_ptr;
 public:
+	float nms = .4;
 
 	YOLODLL_API Detector(std::string cfg_filename, std::string weight_filename, int gpu_id = 0);
 	YOLODLL_API ~Detector();
@@ -39,6 +43,8 @@ public:
 	YOLODLL_API std::vector<bbox_t> detect(image_t img, float thresh = 0.2);
 	static YOLODLL_API image_t load_image(std::string image_filename);
 	static YOLODLL_API void free_image(image_t m);
+
+	YOLODLL_API std::vector<bbox_t> tracking(std::vector<bbox_t> cur_bbox_vec, int const frames_story = 4);
 
 #ifdef OPENCV
 	std::vector<bbox_t> detect(cv::Mat mat, float thresh = 0.2) 
@@ -107,6 +113,8 @@ private:
 	}
 
 #endif	// OPENCV
+
+	std::deque<std::vector<bbox_t>> prev_bbox_vec_deque;
 };
 
 

@@ -16,6 +16,9 @@ char *coco_classes[] = {"person","bicycle","car","motorcycle","airplane","bus","
 
 int coco_ids[] = {1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,27,28,31,32,33,34,35,36,37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,67,70,72,73,74,75,76,77,78,79,80,81,82,84,85,86,87,88,89,90};
 
+extern draw_detection_count;
+
+
 void train_coco(char *cfgfile, char *weightfile)
 {
     //char *train_images = "/home/pjreddie/data/voc/test/train.txt";
@@ -352,7 +355,7 @@ void test_coco(char *cfgfile, char *weightfile, char *filename, float thresh)
         printf("%s: Predicted in %f seconds.\n", input, sec(clock()-time));
         get_detection_boxes(l, 1, 1, thresh, probs, boxes, 0);
         if (nms) do_nms_sort(boxes, probs, l.side*l.side*l.n, l.classes, nms);
-        draw_detections(im, l.side*l.side*l.n, thresh, boxes, probs, coco_classes, alphabet, 80);
+        draw_detections(im, l.side*l.side*l.n, thresh, boxes, probs, coco_classes, alphabet, 80,draw_detection_count);
         save_image(im, "prediction");
         show_image(im, "predictions");
         free_image(im);

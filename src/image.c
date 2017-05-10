@@ -181,14 +181,15 @@ image **load_alphabet()
 	return alphabets;
 }
 
-void draw_detections(image im, int num, float thresh, box *boxes, float **probs, char **names, image **alphabet, int classes)
+void draw_detections(image im, int num, float thresh, box *boxes, float **probs, char **names, image **alphabet, int classes, int draw_detection_counts)
 {
 	int i;
-
+	int detection_count = 0;
 	for (i = 0; i < num; ++i) {
 		int class = max_index(probs[i], classes);
 		float prob = probs[i][class];
 		if (prob > thresh) {
+			detection_count++;
 
 			int width = im.h * .012;
 
@@ -226,10 +227,22 @@ void draw_detections(image im, int num, float thresh, box *boxes, float **probs,
 				image label = get_label(alphabet, names[class], (im.h*.03) / 10);
 				draw_label(im, top + width, left, label, rgb);
 			}
+			if (draw_detection_counts) {
+				
+				rgb[0] = red+0.1;
+				rgb[1] = green+0.1;
+				rgb[2] = blue+0.1;
+
+				char count[1024];
+				_itoa(detection_count, count,10);
+
+				image count_image = get_label(alphabet, count, (im.h*.03) / 10);
+				draw_label(im, 20, im.w-50, count_image, rgb);
+
+			}
 		}
 	}
 }
-
 
 void draw_patch_detections(image im, float *predictions, int w, int h, int classes)
 {

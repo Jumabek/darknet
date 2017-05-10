@@ -79,9 +79,9 @@ YOLODLL_API Detector::~Detector()
 	for (int j = 0; j < FRAMES; ++j) free(detector_gpu.predictions[j]);
 	for (int j = 0; j < FRAMES; ++j) if(detector_gpu.images[j].data) free(detector_gpu.images[j].data);
 
+	for (int j = 0; j < l.w*l.h*l.n; ++j) free(detector_gpu.probs[j]);
 	free(detector_gpu.boxes);
 	free(detector_gpu.probs);
-	for (int j = 0; j < l.w*l.h*l.n; ++j) free(detector_gpu.probs[j]);
 
 	int old_gpu_index;
 	cudaGetDevice(&old_gpu_index);
@@ -154,7 +154,7 @@ YOLODLL_API std::vector<bbox_t> Detector::detect(image_t img, float thresh)
 	cudaSetDevice(net.gpu_index);
 	//std::cout << "net.gpu_index = " << net.gpu_index << std::endl;
 
-	float nms = .4;
+	//float nms = .4;
 
 	image im;
 	im.c = img.c;
@@ -189,6 +189,7 @@ YOLODLL_API std::vector<bbox_t> Detector::detect(image_t img, float thresh)
 			bbox.h = b.h*im.h;
 			bbox.obj_id = obj_id;
 			bbox.prob = prob;
+			bbox.track_id = 0;
 
 			bbox_vec.push_back(bbox);
 		}
@@ -200,4 +201,54 @@ YOLODLL_API std::vector<bbox_t> Detector::detect(image_t img, float thresh)
 	cudaSetDevice(old_gpu_index);
 
 	return bbox_vec;
+}
+
+YOLODLL_API std::vector<bbox_t> Detector::tracking(std::vector<bbox_t> cur_bbox_vec, int const frames_story)
+{
+	bool prev_track_id_present = false;
+	for (auto &i : prev_bbox_vec_deque)
+		if (i.size() > 0) prev_track_id_present = true;
+
+	static unsigned int track_id = 1;
+
+	if (!prev_track_id_present) {
+		//track_id = 1;
+		for (size_t i = 0; i < cur_bbox_vec.size(); ++i)
+			cur_bbox_vec[i].track_id = track_id++;
+		prev_bbox_vec_deque.push_front(cur_bbox_vec);
+		if (prev_bbox_vec_deque.size() > frames_story) prev_bbox_vec_deque.pop_back();
+		return cur_bbox_vec;
+	}
+
+	std::vector<unsigned int> dist_vec(cur_bbox_vec.size(), std::numeric_limits<unsigned int>::max());
+
+	for (auto &prev_bbox_vec : prev_bbox_vec_deque) {
+		for (auto &i : prev_bbox_vec) {
+			int cur_index = -1;
+			for (size_t m = 0; m < cur_bbox_vec.size(); ++m) {
+				bbox_t const& k = cur_bbox_vec[m];
+				if (i.obj_id == k.obj_id) {
+					unsigned int cur_dist = sqrt(((float)i.x - k.x)*((float)i.x - k.x) + ((float)i.y - k.y)*((float)i.y - k.y));
+					if (cur_dist < 100 && (k.track_id == 0 || dist_vec[m] > cur_dist)) {
+						dist_vec[m] = cur_dist;
+						cur_index = m;
+					}
+				}
+			}
+
+			bool track_id_absent = !std::any_of(cur_bbox_vec.begin(), cur_bbox_vec.end(), [&](bbox_t const& b) { return b.track_id == i.track_id; });
+
+			if (cur_index >= 0 && track_id_absent)
+				cur_bbox_vec[cur_index].track_id = i.track_id;
+		}
+	}
+
+	for (size_t i = 0; i < cur_bbox_vec.size(); ++i)
+		if (cur_bbox_vec[i].track_id == 0)
+			cur_bbox_vec[i].track_id = track_id++;
+
+	prev_bbox_vec_deque.push_front(cur_bbox_vec);
+	if (prev_bbox_vec_deque.size() > frames_story) prev_bbox_vec_deque.pop_back();
+
+	return cur_bbox_vec;
 }

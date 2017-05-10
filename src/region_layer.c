@@ -270,6 +270,9 @@ void forward_region_layer(const region_layer l, network_state state)
             truth_shift.x = 0;
             truth_shift.y = 0;
             //printf("index %d %d\n",i, j);
+			int class = state.truth[t * 5 + b*l.truths + 4];
+			//if (class < 0) continue;
+
             for(n = 0; n < l.n; ++n){
                 int index = size*(j*l.w*l.n + i*l.n + n) + b*l.outputs;
                 box pred = get_region_box(l.output, l.biases, n, index, i, j, l.w, l.h);
@@ -305,7 +308,7 @@ void forward_region_layer(const region_layer l, network_state state)
             }
 
 
-            int class = state.truth[t*5 + b*l.truths + 4];
+            
             if (l.map) class = l.map[class];
             delta_region_class(l.output, l.delta, best_index + 5, class, l.classes, l.softmax_tree, l.class_scale, &avg_cat);
             ++count;

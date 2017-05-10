@@ -93,7 +93,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\opencv_2.4.9\opencv\build\x64\vc12\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <OutputFile>$(OutDir)\..\$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)\$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalDependencies>..\..\3rdparty\lib\x64\pthreadVC2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CudaCompile>
@@ -126,7 +126,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\opencv_2.4.9\opencv\build\include;..\..\3rdparty\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;..\..\3rdparty\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>OPENCV;_TIMESPEC_DEFINED;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
@@ -138,9 +138,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\opencv_2.4.9\opencv\build\x64\vc12\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%OPENCV_DIR%\build\x64\vc12\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>..\..\3rdparty\lib\x64\pthreadVC2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)\..\$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)\$(TargetName)$(TargetExt)</OutputFile>
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
@@ -206,6 +206,8 @@
     <ClCompile Include="..\..\src\normalization_layer.c" />
     <ClCompile Include="..\..\src\option_list.c" />
     <ClCompile Include="..\..\src\parser.c" />
+    <ClCompile Include="..\..\src\patch_classifier.c" />
+    <ClCompile Include="..\..\src\patch_region_layer.c" />
     <ClCompile Include="..\..\src\region_layer.c" />
     <ClCompile Include="..\..\src\reorg_layer.c" />
     <ClCompile Include="..\..\src\rnn.c" />
@@ -258,6 +260,7 @@
     <ClInclude Include="..\..\src\normalization_layer.h" />
     <ClInclude Include="..\..\src\option_list.h" />
     <ClInclude Include="..\..\src\parser.h" />
+    <ClInclude Include="..\..\src\patch_region_layer.h" />
     <ClInclude Include="..\..\src\region_layer.h" />
     <ClInclude Include="..\..\src\reorg_layer.h" />
     <ClInclude Include="..\..\src\rnn_layer.h" />

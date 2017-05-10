@@ -19,6 +19,8 @@
 
 char *voc_names[] = {"aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"};
 
+extern draw_detection_count;
+
 void train_yolo(char *cfgfile, char *weightfile)
 {
     char *train_images = "/data/voc/train.txt";
@@ -326,7 +328,7 @@ void test_yolo(char *cfgfile, char *weightfile, char *filename, float thresh)
         get_detection_boxes(l, 1, 1, thresh, probs, boxes, 0);
         if (nms) do_nms_sort(boxes, probs, l.side*l.side*l.n, l.classes, nms);
         //draw_detections(im, l.side*l.side*l.n, thresh, boxes, probs, voc_names, alphabet, 20);
-        draw_detections(im, l.side*l.side*l.n, thresh, boxes, probs, voc_names, alphabet, 20);
+        draw_detections(im, l.side*l.side*l.n, thresh, boxes, probs, voc_names, alphabet, 20,draw_detection_count);
         save_image(im, "predictions");
         show_image(im, "predictions");
 

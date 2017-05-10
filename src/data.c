@@ -341,6 +341,7 @@ void fill_truth_detection(char *path, int num_boxes, float *truth, int classes, 
     char labelpath[4096];
     find_replace(path, "images", "labels", labelpath);
     find_replace(labelpath, "JPEGImages", "labels", labelpath);
+	find_replace(labelpath, "img1", "labels", labelpath);
 
     find_replace(labelpath, "raw", "labels", labelpath);
     find_replace(labelpath, ".jpg", ".txt", labelpath);

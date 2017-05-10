@@ -15,7 +15,7 @@ and in addition contains implementation of my new layers and custom modification
 |  ![Darknet Logo](http://pjreddie.com/media/files/darknet-black-small.png) | &nbsp; ![map_fps](https://hsto.org/files/a24/21e/068/a2421e0689fb43f08584de9d44c2215f.jpg) https://arxiv.org/abs/1612.08242 |
 |---|---|
 
-|  ![Darknet Logo](http://pjreddie.com/media/files/darknet-black-small.png) | &nbsp; ![map_fps](https://hsto.org/files/978/a64/7ca/978a647caaee40b7b0a64f7770f11e99.jpg) https://arxiv.org/abs/1612.08242 |
+|  ![Darknet Logo](http://pjreddie.com/media/files/darknet-black-small.png) | &nbsp; ![map_fps](https://hsto.org/files/3a6/fdf/b53/3a6fdfb533f34cee9b52bdd9bb0b19d9.jpg) https://arxiv.org/abs/1612.08242 |
 |---|---|
 
 
@@ -115,7 +115,7 @@ Others: https://www.youtube.com/channel/UC7ev3hNVkx4DzZ3LO19oebg
 
 5. If you want to build with CUDNN to speed up then:
       
-    * download and install CUDNN: https://developer.nvidia.com/cudnn
+    * download and install **cuDNN 5.1 for CUDA 8.0**: https://developer.nvidia.com/cudnn
       
     * add Windows system variable `cudnn` with path to CUDNN: https://hsto.org/files/a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg
       
@@ -139,13 +139,14 @@ Then add to your created project:
 `..\..\3rdparty\lib\x64\pthreadVC2.lib;cublas.lib;curand.lib;cudart.lib;cudnn.lib;%(AdditionalDependencies)`
 - (right click on project) -> properties -> C/C++ -> Preprocessor -> Preprocessor Definitions
 
+`OPENCV;_TIMESPEC_DEFINED;_CRT_SECURE_NO_WARNINGS;GPU;WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)`
+
 - open file: `\src\yolo.c` and change 3 lines to your OpenCV-version - `249` (for 2.4.9), `2413` (for 2.4.13), ... : 
 
     * `#pragma comment(lib, "opencv_core249.lib")`
     * `#pragma comment(lib, "opencv_imgproc249.lib")`
     * `#pragma comment(lib, "opencv_highgui249.lib")` 
 
-`OPENCV;_TIMESPEC_DEFINED;_CRT_SECURE_NO_WARNINGS;GPU;WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)`
 - compile to .exe (X64 & Release) and put .dll-s near with .exe:
 
 `pthreadVC2.dll, pthreadGC2.dll` from \3rdparty\dll\x64

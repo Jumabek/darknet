@@ -40,6 +40,10 @@ static int demo_index = 0;
 static image images[FRAMES];
 static float *avg;
 
+
+extern draw_detection_count;
+
+
 void *fetch_in_thread(void *ptr)
 {
     in = get_image_from_stream(cap);
@@ -88,7 +92,9 @@ void *detect_in_thread(void *ptr)
     det = images[(demo_index + FRAMES/2 + 1)%FRAMES];
     demo_index = (demo_index + 1)%FRAMES;
 
-    draw_detections(det, l.w*l.h*l.n, demo_thresh, boxes, probs, demo_names, demo_alphabet, demo_classes);
+	
+
+    draw_detections(det, l.w*l.h*l.n, demo_thresh, boxes, probs, demo_names, demo_alphabet, demo_classes, draw_detection_count);
 
     return 0;
 }
@@ -105,6 +111,7 @@ double get_wall_time()
 void demo(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, char **names, int classes, int frame_skip, char *prefix)
 {
     //skip = frame_skip;
+
     image **alphabet = load_alphabet();
     int delay = frame_skip;
     demo_names = names;

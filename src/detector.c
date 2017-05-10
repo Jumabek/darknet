@@ -12,6 +12,8 @@
 #endif
 static int coco_ids[] = {1,2,3,4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,27,28,31,32,33,34,35,36,37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,67,70,72,73,74,75,76,77,78,79,80,81,82,84,85,86,87,88,89,90};
 
+int draw_detection_count = 0;
+
 void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, int ngpus, int clear)
 {
     list *options = read_data_cfg(datacfg);
@@ -478,7 +480,7 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         printf("%s: Predicted in %f seconds.\n", input, sec(clock()-time));
         get_region_boxes(l, 1, 1, thresh, probs, boxes, 0, 0);
         if (nms) do_nms_sort(boxes, probs, l.w*l.h*l.n, l.classes, nms);
-        draw_detections(im, l.w*l.h*l.n, thresh, boxes, probs, names, alphabet, l.classes);
+        draw_detections(im, l.w*l.h*l.n, thresh, boxes, probs, names, alphabet, l.classes, draw_detection_count);
         save_image(im, "predictions");
         show_image(im, "predictions");
 
@@ -500,6 +502,11 @@ void run_detector(int argc, char **argv)
     float thresh = find_float_arg(argc, argv, "-thresh", .24);
     int cam_index = find_int_arg(argc, argv, "-c", 0);
     int frame_skip = find_int_arg(argc, argv, "-s", 0);
+
+	draw_detection_count = find_int_arg(argc,argv, "-count", 0);
+	
+
+
     if(argc < 4){
         fprintf(stderr, "usage: %s %s [train/test/valid] [cfg] [weights (optional)]\n", argv[0], argv[1]);
         return;
@@ -539,9 +546,12 @@ void run_detector(int argc, char **argv)
     else if(0==strcmp(argv[2], "recall")) validate_detector_recall(cfg, weights);
     else if(0==strcmp(argv[2], "demo")) {
         list *options = read_data_cfg(datacfg);
+		
         int classes = option_find_int(options, "classes", 20);
         char *name_list = option_find_str(options, "names", "data/names.list");
         char **names = get_labels(name_list);
         demo(cfg, weights, thresh, cam_index, filename, names, classes, frame_skip, prefix);
     }
+		
+	
 }
