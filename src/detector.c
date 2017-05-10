@@ -139,14 +139,14 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
 
         i = get_current_batch(net);
         printf("%d: %f, %f avg, %f rate, %lf seconds, %d images\n", get_current_batch(net), loss, avg_loss, get_current_rate(net), sec(clock()-time), i*imgs);
-        if(i%1000==0 || (i < 1000 && i%100 == 0)){
+		if (i % 1000 == 0 || (i < 1000 && i % 100 == 0)) {
 #ifdef GPU
-            if(ngpus != 1) sync_nets(nets, ngpus, 0);
+			if (ngpus != 1) sync_nets(nets, ngpus, 0);
 #endif
-            char buff[256];
-            sprintf(buff, "%s/%s_%d.weights", backup_directory, base, i);
-            save_weights(net, buff);
-        }
+			char buff[256];
+			sprintf(buff, "%s/%s_%d.weights", backup_directory, base, i);
+			save_weights(net, buff);
+		}
         free_data(train);
     }
 #ifdef GPU
@@ -360,7 +360,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
     fprintf(stderr, "Total Detection Time: %f Seconds\n", (double)(time(0) - start));
 }
 
-void validate_detector_recall(char *cfgfile, char *weightfile)
+void validate_detector_recall(char *datacfg, char *cfgfile, char *weightfile)
 {
     network net = parse_network_cfg(cfgfile);
     if(weightfile){
@@ -370,7 +370,9 @@ void validate_detector_recall(char *cfgfile, char *weightfile)
     fprintf(stderr, "Learning Rate: %g, Momentum: %g, Decay: %g\n", net.learning_rate, net.momentum, net.decay);
     srand(time(0));
 
-    list *plist = get_paths("data/voc.2007.test");
+	list *options = read_data_cfg(datacfg);
+	char *valid_images = option_find_str(options, "valid", "data/train.txt");
+    list *plist = get_paths(valid_images);
     char **paths = (char **)list_to_array(plist);
 
     layer l = net.layers[net.n-1];
@@ -384,7 +386,7 @@ void validate_detector_recall(char *cfgfile, char *weightfile)
     int m = plist->size;
     int i=0;
 
-    float thresh = .001;
+	float thresh = .2;// .001;
     float iou_thresh = .5;
     float nms = .4;
 
@@ -407,6 +409,7 @@ void validate_detector_recall(char *cfgfile, char *weightfile)
         find_replace(labelpath, "JPEGImages", "labels", labelpath);
         find_replace(labelpath, ".jpg", ".txt", labelpath);
         find_replace(labelpath, ".JPEG", ".txt", labelpath);
+	find_replace(labelpath, ".png", ".txt", labelpath);
 
         int num_labels = 0;
         box_label *truth = read_boxes(labelpath, &num_labels);
@@ -415,16 +418,16 @@ void validate_detector_recall(char *cfgfile, char *weightfile)
                 ++proposals;
             }
         }
-        for (j = 0; j < num_labels; ++j) {
-            ++total;
-            box t = {truth[j].x, truth[j].y, truth[j].w, truth[j].h};
-            float best_iou = 0;
-            for(k = 0; k < l.w*l.h*l.n; ++k){
-                float iou = box_iou(boxes[k], t);
-                if(probs[k][0] > thresh && iou > best_iou){
-                    best_iou = iou;
-                }
-            }
+		for (j = 0; j < num_labels; ++j) {
+			++total;
+			box t = { truth[j].x, truth[j].y, truth[j].w, truth[j].h };
+			float best_iou = 0;
+			for (k = 0; k < l.w*l.h*l.n; ++k) {
+				float iou = box_iou(boxes[k], t);
+				if (probs[k][0] > thresh && iou > best_iou) {
+					best_iou = iou;
+				}
+			}
             avg_iou += best_iou;
             if(best_iou > iou_thresh){
                 ++correct;
@@ -543,7 +546,7 @@ void run_detector(int argc, char **argv)
     if(0==strcmp(argv[2], "test")) test_detector(datacfg, cfg, weights, filename, thresh);
     else if(0==strcmp(argv[2], "train")) train_detector(datacfg, cfg, weights, gpus, ngpus, clear);
     else if(0==strcmp(argv[2], "valid")) validate_detector(datacfg, cfg, weights);
-    else if(0==strcmp(argv[2], "recall")) validate_detector_recall(cfg, weights);
+    else if(0==strcmp(argv[2], "recall")) validate_detector_recall(datacfg, cfg, weights);
     else if(0==strcmp(argv[2], "demo")) {
         list *options = read_data_cfg(datacfg);
 		

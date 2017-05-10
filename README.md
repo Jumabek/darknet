@@ -29,7 +29,7 @@ This repository is forked from Linux-version: https://github.com/pjreddie/darkne
 More details: http://pjreddie.com/darknet/yolo/
 
 ##### Requires: 
-* **MS Visual Studio 2015 (v140)**: https://www.microsoft.com/download/details.aspx?id=48146
+* **MS Visual Studio 2015 (v140)**: https://go.microsoft.com/fwlink/?LinkId=532606&clcid=0x409  (or offline [ISO image](https://go.microsoft.com/fwlink/?LinkId=615448&clcid=0x409))
 * **CUDA 8.0 for Windows x64**: https://developer.nvidia.com/cuda-downloads
 * **OpenCV 2.4.9**: https://sourceforge.net/projects/opencvlibrary/files/opencv-win/2.4.9/opencv-2.4.9.exe/download
   - To compile without OpenCV - remove define OPENCV from: Visual Studio->Project->Properties->C/C++->Preprocessor
@@ -172,7 +172,9 @@ Then add to your created project:
 
 5. Run command: `type 2007_train.txt 2007_val.txt 2012_*.txt > train.txt`
 
-6. Start training by using `train_voc.cmd` or by using the command line: `darknet.exe detector train data/voc.data yolo-voc.cfg darknet19_448.conv.23`
+6. Set `batch=64` and `subdivisions=8` in the file `yolo-voc.cfg`: [link](https://github.com/AlexeyAB/darknet/blob/master/build/darknet/x64/yolo-voc.cfg#L3)
+
+7. Start training by using `train_voc.cmd` or by using the command line: `darknet.exe detector train data/voc.data yolo-voc.cfg darknet19_448.conv.23`
 
 If required change pathes in the file `build\darknet\x64\data\voc.data`
 
@@ -188,10 +190,12 @@ https://groups.google.com/d/msg/darknet/NbJqonJBTSY/Te5PfIpuCAAJ
 
 ## How to train (to detect your custom objects):
 
-1. Create file `yolo-obj.cfg` with the same content as in `yolo-voc.cfg` (or copy `yolo-voc.cfg` to `yolo-obj.cfg)` and:
+1. Create file `yolo-obj.cfg` with the same content as in `yolo-voc.2.0.cfg` (or copy `yolo-voc.2.0.cfg` to `yolo-obj.cfg)` and:
 
+  * change line batch to [`batch=64`](https://github.com/AlexeyAB/darknet/blob/master/build/darknet/x64/yolo-voc.cfg#L3)
+  * change line subdivisions to [`subdivisions=8`](https://github.com/AlexeyAB/darknet/blob/master/build/darknet/x64/yolo-voc.cfg#L4)
   * change line `classes=20` to your number of objects
-  * change line #224 from [`filters=125`](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.cfg#L224) to `filters=(classes + 5)*5` (generally this depends on the `num` and `coords`, i.e. equal to `(classes + coords + 1)*num`)
+  * change line #237 from [`filters=125`](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.cfg#L237) to `filters=(classes + 5)*5` (generally this depends on the `num` and `coords`, i.e. equal to `(classes + coords + 1)*num`)
 
   For example, for 2 objects, your file `yolo-obj.cfg` should differ from `yolo-voc.cfg` in such lines:
 
@@ -266,7 +270,7 @@ Usually sufficient 2000 iterations for each class(object). But for a more precis
   * **9002** - iteration number (number of batch)
   * **0.060730 avg** - average loss (error) - **the lower, the better**
 
-  When you see that average loss **0.060730 avg** enough low at many iterations and no longer decreases then you should stop training.
+  When you see that average loss **0.xxxxxx avg** no longer decreases at many iterations then you should stop training.
 
 2. Once training is stopped, you should take some of last `.weights`-files from `darknet\build\darknet\x64\backup` and choose the best of them:
 
@@ -274,7 +278,7 @@ For example, you stopped training after 9000 iterations, but the best result can
 
 ![Overfitting](https://hsto.org/files/5dc/7ae/7fa/5dc7ae7fad9d4e3eb3a484c58bfc1ff5.png) 
 
-  2.1. At first, you should put filenames of validation images to file `data\voc.2007.test` (format as in `train.txt`) or if you haven't validation images - simply copy `data\train.txt` to `data\voc.2007.test`.
+  2.1. At first, in your file `obj.data` you must specify the path to the validation dataset `valid = valid.txt` (format of `valid.txt` as in `train.txt`), and if you haven't validation images, just copy `data\train.txt` to `data\valid.txt`.
 
   2.2 If training is stopped after 9000 iterations, to validate some of previous weights use this commands:
 
@@ -287,7 +291,7 @@ And comapre last output lines for each weights (7000, 8000, 9000):
 > 7586 7612 7689 RPs/Img: 68.23 **IOU: 77.86%** Recall:99.00%
 
 * **IOU** - the bigger, the better (says about accuracy) - **better to use**
-* **Recall** - the bigger, the better (says about accuracy)
+* **Recall** - the bigger, the better (says about accuracy) - actually Yolo calculates true positives, so it shouldn't be used
 
 For example, **bigger IUO** gives weights `yolo-obj_8000.weights` - then **use this weights for detection**.
 
@@ -305,6 +309,8 @@ Example of custom object detection: `darknet.exe detector test data/obj.data yol
 
 1. Before training:
   * set flag `random=1` in your `.cfg`-file - it will increase precision by training Yolo for different resolutions: [link](https://github.com/AlexeyAB/darknet/blob/47409529d0eb935fa7bafbe2b3484431117269f5/cfg/yolo-voc.cfg#L244)
+  
+  * desirable that your training dataset include images with objects at diffrent: scales, rotations, lightings, from different sides
 
 2. After training - for detection:
 
