@@ -69,28 +69,25 @@ void forward_patch_region_layer(const patch_region_layer l, network_state state)
 {
 	int i, j, b;
 
-	//printf("state.input[0] = %d", state.input[0]);
-	//printf("l.output[0] = %f\n", l.output[0]);
-	//printf("l.batch = %d\n", l.batch);
-	//printf("state.input[0] = %f\n", state.input[0]);
 	memcpy(l.output, state.input, l.outputs*l.batch * sizeof(float));
 	#ifndef GPU
 		flatten(l.output, l.w*l.h, 3, l.batch, 1);
 	#endif
+
+	#ifndef GPU
 	for (b = 0; b < l.batch; ++b) {
 		for (i = 0; i < l.h*l.w; ++i) {
 			int index = l.classes*i + b*l.outputs;
 			softmax(l.output + index, l.classes, 1, l.output + index);
 		}
 	}
-	
+	#endif
+
 	if (!state.train) return;
 	memset(l.delta, 0, l.outputs*l.batch * sizeof(float));
 	*(l.cost) = 0;
 
 	
-
-	printf("patch region layer received class_scale as %f\n", l.class_scale);
 	l2_cpu_batch(l.batch,l.w,l.h,l.classes, l.output, state.truth, l.delta, l.output,l.class_scale);
 
 	l.cost[0] = sum_array_batch(l.output, l.inputs, l.batch);
@@ -109,6 +106,11 @@ void forward_patch_region_layer_gpu(const patch_region_layer l, network_state st
 {
 
 	flatten_ongpu(state.input, l.h*l.w, l.classes, l.batch, 1, l.output_gpu);
+
+	if (l.softmax) {
+		softmax_gpu(l.output_gpu , l.classes, l.classes, l.w*l.h*l.batch, 1, l.output_gpu);
+	}
+
 
 	float *in_cpu = calloc(l.batch*l.inputs, sizeof(float));
 	float *truth_cpu = 0;
