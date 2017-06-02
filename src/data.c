@@ -56,7 +56,6 @@ char **get_random_paths(char **paths, int n, int m)
         int index = random_gen() % m;
         random_paths[i] = paths[index];
         //if(i == 0) printf("%s\n", paths[index]);
-		//printf("grp: %s\n", paths[index]);
     }
     pthread_mutex_unlock(&mutex);
     return random_paths;
@@ -462,6 +461,7 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 
 	int i,j,k;
 	int index;
+	int backg_cls_id = 2;
 	//'classes' - 1 is a background, so we need to set it to 1 by default, 
 	//since most of our patches would be background
 	
@@ -470,6 +470,7 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 		for (i = 0; i < w; ++i) {
 			for (k = 0; k < classes; k++) {
 				int index = j*w*classes + i*classes + k;
+				//set everything as background by default 
 				if(k == classes-1) truth[index] = 1;
 				else truth[index] = 0;
 			}
@@ -482,10 +483,14 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 		x = patches[i].x;
 		y = patches[i].y;
 		cls_id = patches[i].id;
-
-		index = y*w*classes + x*classes + cls_id;
-			
-		truth[index] = 1;
+		if (cls_id == -1) {//if class of the patch is ambigious then we set as back_cls is ambigious
+			index = y*w*classes + x*classes + backg_cls_id;
+			truth[index] = -1;
+		}
+		else {
+			index = y*w*classes + x*classes + cls_id;
+			truth[index] = 1;
+		}
 	}
 	
 	free(patches);
@@ -819,6 +824,8 @@ data load_data_detection(int n, char **paths, int m, int w, int h, int boxes, in
     free(random_paths);
     return d;
 }
+
+
 
 void *load_thread(void *ptr)
 {
