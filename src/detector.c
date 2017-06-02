@@ -88,6 +88,7 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
             printf("%d\n", dim);
             args.w = dim;
             args.h = dim;
+			
 
             pthread_join(load_thread, 0);
             train = buffer;
@@ -240,10 +241,36 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
     char *valid_images = option_find_str(options, "valid", "data/train.list");
     char *name_list = option_find_str(options, "names", "data/names.list");
     char *prefix = option_find_str(options, "results", "results");
+	float nms = option_find_float(options, "nms", 0.45);
     char **names = get_labels(name_list);
     char *mapf = option_find_str(options, "map", 0);
+	
+
     int *map = 0;
     if (mapf) map = read_map(mapf);
+
+	int dot_index=0, slash_index=0;
+	char output_file[50];
+	if (1) {
+		for (int i = strlen(weightfile) - 1; i >= 0; i--) {
+			if (weightfile[i] == '.') {
+				dot_index = i;
+				break;
+			}
+		}
+		
+		for (int i = strlen(weightfile) - 1; i >= 0; i--) {
+			if (weightfile[i] == '/' || weightfile[i] == '\\' ) {
+				slash_index = i;
+				break;
+			}
+		}
+
+		strncpy(output_file, weightfile + slash_index + 1, dot_index - slash_index - 1);
+		//printf("Output file = %s\n", output_file);
+		find_replace(output_file, "_", "-", output_file);
+	}
+	printf("Output file = %s\n",output_file);
 
     network net = parse_network_cfg(cfgfile);
     if(weightfile){
@@ -276,7 +303,14 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
         fp = fopen(buff, "w");
         imagenet = 1;
         classes = 200;
-    } else {
+	}
+	else if (0 == strcmp(type, "caltech")) {
+		fps = calloc(classes, sizeof(FILE *));
+		for (j = 0; j < classes; ++j) {
+			snprintf(buff, 1024, "%s/%s.txt", prefix,output_file);
+			fps[j] = fopen(buff, "w");
+		}
+	}else {
         fps = calloc(classes, sizeof(FILE *));
         for(j = 0; j < classes; ++j){
             snprintf(buff, 1024, "%s/%s%s.txt", prefix, base, names[j]);
@@ -294,7 +328,6 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
     int t;
 
     float thresh = .005;
-    float nms = .45;
 
     int nthreads = 4;
     image *val = calloc(nthreads, sizeof(image));
@@ -503,6 +536,8 @@ void run_detector(int argc, char **argv)
 {
     char *prefix = find_char_arg(argc, argv, "-prefix", 0);
     float thresh = find_float_arg(argc, argv, "-thresh", .24);
+	
+
     int cam_index = find_int_arg(argc, argv, "-c", 0);
     int frame_skip = find_int_arg(argc, argv, "-s", 0);
 
