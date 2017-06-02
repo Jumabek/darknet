@@ -111,6 +111,13 @@ double get_wall_time()
 void demo(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, char **names, int classes, int frame_skip, char *prefix)
 {
     //skip = frame_skip;
+	int BUFSIZE = 1000;
+	TCHAR Buffer[1000];
+	DWORD dwRet;
+	dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
+	sprintf(Buffer, "%s/x64", Buffer);
+	SetCurrentDirectory(Buffer);
+	
 
     image **alphabet = load_alphabet();
     int delay = frame_skip;
