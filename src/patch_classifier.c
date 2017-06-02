@@ -151,13 +151,32 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 
 	clock_t time;
 	int count = 0;
-	int TP = 0;
-	int TN = 0;
-	int FP = 0;
-	int FN = 0;
+	float TP_fire = 0;
+	float FP_fire = 0;
+	float TP_smoke = 0;
+	float FP_smoke = 0;
 
-	int background_cls_id = l.classes-1;
+	float FN_fire = 0;
+	float FN_smoke = 0;
+
+	float TN = 0;
+
+	const int background_cls_id = l.classes-1;
+	const int fire_cls_id = 0;
+	const int smoke_cls_id = 1;
+
 	int num_background_cls = 0;
+	FILE * file = fopen(pr_rc_filename, "r");
+	
+	//put a header to log file if it is opening for the first time
+	if (file) {
+		fclose(file);
+		file = fopen(pr_rc_filename, "a+");
+	}
+	else {
+		file = fopen(pr_rc_filename, "w");
+		printf(file, "iter_in_k \t FirePrecision \t FireRecall \t SmokePrecision \t SmokeRecall\n");
+	}
 
 	while (count < m) {
 		time = clock();
@@ -176,6 +195,9 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 		for (j = 0; j < l.h; j++) {
 			for (i = 0; i < l.w; i++) {
 				index = j*l.w*l.classes + i*l.classes;
+
+				if (truths[index + background_cls_id] == -1) continue; //it means this ambiguous cell
+				
 				int cls_id = max_index(truths + index, l.classes);
 
 				int prediction = max_index(predictions + index, l.classes);
@@ -183,13 +205,26 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 
 				if (prediction == background_cls_id) {
 					if (prediction == cls_id) TN++;
-					else FN++;
+					else { 
+						if (cls_id == fire_cls_id) FN_fire++;
+						else if (cls_id == smoke_cls_id) FN_smoke++;
+						else { 
+							printf("false negative has to be either fire or smoke\n"); 
+							
+							system("pause");
+							return 0;
+						}
+
+					}
 				}
-				else {
-					if (prediction == cls_id) TP++;
-					else FP++;
+				else if (prediction == fire_cls_id) {
+					if (prediction == cls_id) TP_fire++;
+					else FP_fire++;
 				}
-			
+				else if (prediction == smoke_cls_id) {
+					if (prediction == cls_id)TP_smoke++;
+					else FP_smoke++;
+				}
 			}
 		}
 		if (vis_detections) {
@@ -209,9 +244,9 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 		free_image(sized);
 		count++;
 	}
-	FILE * file = fopen(pr_rc_filename, "a+");
 
-	fprintf(file, "%0.1f:  %f   %f\n", iter_in_k, (float)TP / (TP+FP), (float)TP/ (TP+FN));
+
+	fprintf(file, "%0.1f:  %f   %f   %f   %f\n", iter_in_k, TP_fire / (TP_fire+FP_fire), TP_fire/ (TP_fire+FN_fire), TP_smoke / (TP_smoke + FP_smoke), TP_smoke / (TP_smoke + FN_smoke));
 
 }
 
