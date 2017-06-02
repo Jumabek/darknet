@@ -190,20 +190,18 @@ void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *trut
 	int non_zeros = 0;
 	int back_cls_id = 2;
 
-	//char temp_filename[1024] = "temp2.txt";
-	//strcpy(temp_filename, labelpath);
-	//find_replace(temp_filename, ".txt", "_temp.txt", temp_filename);
-
-	//FILE *file = fopen(temp_filename, "a+");
-
 	for (b = 0; b < batch; b++) {
 		for (j = 0; j < h; j++) {
 			for (i = 0; i < w; i++) {
 				for (c = 0; c < classes; c++) {
-					index = b*h*w*classes + j*w*classes+i*classes+c;
-
-					//fprintf(file,"(i,size,j) = (%d,%d,%d) \t truth[%d] = %f\t pred[%d] = %f\n",i,size,j, index, truth[index], index, pred[index]);
-
+					index = b*h*w*classes + j*w*classes + i*classes + c;
+					if (c ==back_cls_id && truth[index] == -1) {
+						error[index] = 0;
+						truth[index] = 1;
+						//printf("Error[%d] = %f\t delta[%d] = %f\n", index, error[index], index, delta[index]);
+						continue;
+					}
+	
 					float diff = truth[index] - pred[index];
 
 					if (c != back_cls_id) diff = class_scale*diff;
@@ -216,7 +214,7 @@ void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *trut
 		}
 	}
 
-	//fclose(file);
+	
 }
 
 void l2_cpu(int n, float *pred, float *truth, float *delta, float *error)
