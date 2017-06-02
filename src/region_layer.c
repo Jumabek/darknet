@@ -270,8 +270,6 @@ void forward_region_layer(const region_layer l, network_state state)
             truth_shift.x = 0;
             truth_shift.y = 0;
             //printf("index %d %d\n",i, j);
-			int class = state.truth[t * 5 + b*l.truths + 4];
-			//if (class < 0) continue;
 
             for(n = 0; n < l.n; ++n){
                 int index = size*(j*l.w*l.n + i*l.n + n) + b*l.outputs;
@@ -308,7 +306,7 @@ void forward_region_layer(const region_layer l, network_state state)
             }
 
 
-            
+			int class = state.truth[t * 5 + b*l.truths + 4];
             if (l.map) class = l.map[class];
             delta_region_class(l.output, l.delta, best_index + 5, class, l.classes, l.softmax_tree, l.class_scale, &avg_cat);
             ++count;
@@ -330,8 +328,11 @@ void backward_region_layer(const region_layer l, network_state state)
 
 void get_region_boxes(layer l, int w, int h, float thresh, float **probs, box *boxes, int only_objectness, int *map)
 {
+	
     int i,j,n;
-    float *predictions = l.output;
+	int voc_car_id=6;
+	int voc_person_id=14;
+	float *predictions = l.output;
     for (i = 0; i < l.w*l.h; ++i){
         int row = i / l.w;
         int col = i % l.w;
@@ -371,7 +372,15 @@ void get_region_boxes(layer l, int w, int h, float thresh, float **probs, box *b
             } else {
                 for(j = 0; j < l.classes; ++j){
                     float prob = scale*predictions[class_index+j];
-                    probs[index][j] = (prob > thresh) ? prob : 0;
+					if (l.classes == 20) {
+						if (j == voc_car_id || j == voc_person_id)
+							probs[index][j] = (prob > thresh) ? prob : 0;
+						else
+							probs[index][j] = 0;
+					}
+					else {
+						probs[index][j] = (prob > thresh) ? prob : 0;
+					}
                 }
             }
             if(only_objectness){
