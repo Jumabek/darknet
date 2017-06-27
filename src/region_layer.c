@@ -328,7 +328,9 @@ void backward_region_layer(const region_layer l, network_state state)
 
 void get_region_boxes(layer l, int w, int h, float thresh, float **probs, box *boxes, int only_objectness, int *map)
 {
-	
+	//int animal_cls_ids[] = {0, 14,15,16,17,19,20,21,22,23 };
+	int animal_cls_ids[] = {0, 15 };
+	int num_animal_types = 2;
     int i,j,n;
 	int voc_car_id=6;
 	int voc_person_id=14;
@@ -377,6 +379,17 @@ void get_region_boxes(layer l, int w, int h, float thresh, float **probs, box *b
 							probs[index][j] = (prob > thresh) ? prob : 0;
 						else
 							probs[index][j] = 0;
+					}
+					else if (l.classes == 80) {
+						int c;
+						int flag = 0;
+						for (c = 0; c < num_animal_types; c++) {
+							if (animal_cls_ids[c] == j){
+								probs[index][j] = (prob > thresh) ? prob : 0;
+								flag = 1;
+							}													
+						}
+						if (!flag) 	probs[index][j] = 0;
 					}
 					else {
 						probs[index][j] = (prob > thresh) ? prob : 0;
