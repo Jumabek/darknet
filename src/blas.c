@@ -188,33 +188,29 @@ void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *trut
 {
     int i,j,b,c,index;
 	int non_zeros = 0;
-	int back_cls_id = 2;
+	int back_cls_id = classes-1;
 
 	for (b = 0; b < batch; b++) {
 		for (j = 0; j < h; j++) {
 			for (i = 0; i < w; i++) {
 				for (c = 0; c < classes; c++) {
 					index = b*h*w*classes + j*w*classes + i*classes + c;
-					if (c ==back_cls_id && truth[index] == -1) {
+					if ((c ==back_cls_id && truth[index] == -1) ) {
 						error[index] = 0;
-						truth[index] = 1;
+						error[index] = 0;
+						delta[index] = 0;
 						//printf("Error[%d] = %f\t delta[%d] = %f\n", index, error[index], index, delta[index]);
-						continue;
 					}
-	
-					float diff = truth[index] - pred[index];
-
-					if (c != back_cls_id) diff = class_scale*diff;
-
-					error[index] = diff*diff;
-					delta[index] = diff;
+					else {
+						float diff = truth[index] - pred[index];
+						if (c != back_cls_id) diff = class_scale*diff;
+						error[index] = diff*diff;
+						delta[index] = diff;
+					}
 				}
 			}
-
 		}
 	}
-
-	
 }
 
 void l2_cpu(int n, float *pred, float *truth, float *delta, float *error)
