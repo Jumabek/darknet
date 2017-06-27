@@ -457,11 +457,10 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 
 	patch_label *patches = read_patches(labelpath, &count);
 
-	//randomize_boxes(patches, count);
 
 	int i,j,k;
 	int index;
-	int backg_cls_id = 2;
+	int backg_cls_id = classes-1;
 	//'classes' - 1 is a background, so we need to set it to 1 by default, 
 	//since most of our patches would be background
 	
@@ -471,7 +470,7 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 			for (k = 0; k < classes; k++) {
 				int index = j*w*classes + i*classes + k;
 				//set everything as background by default 
-				if(k == classes-1) truth[index] = 1;
+				if(k == backg_cls_id) truth[index] = 1;
 				else truth[index] = 0;
 			}
 		}
@@ -857,6 +856,7 @@ void *load_thread(void *ptr)
     } else if (a.type == COMPARE_DATA){
         *a.d = load_data_compare(a.n, a.paths, a.m, a.classes, a.w, a.h);
     } else if (a.type == IMAGE_DATA){
+		//printf("load_image_color(%s)\n", a.path);
         *(a.im) = load_image_color(a.path, 0, 0);
         *(a.resized) = resize_image(*(a.im), a.w, a.h);
     } else if (a.type == TAG_DATA){
