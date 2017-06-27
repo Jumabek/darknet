@@ -1,6 +1,6 @@
 
 
-darknet.exe detector demo data/coco.data cfg/yolo.cfg weights/yolo.weights F:/dataset/demo_vids/fast-and-furious8.mp4 -i 0 -thresh 0.25 -count 1
+darknet.exe detector demo data/coco.data cfg/yolo-test-896.cfg weights/yolo.weights E:\\Work\\vid_for_demo3\\20170614_163731.mp4 -i 0 -thresh 0.3
 
 
 pause
