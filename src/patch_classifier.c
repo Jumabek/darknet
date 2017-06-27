@@ -50,7 +50,7 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 	network net = nets[0];
 
 	int imgs = net.batch * net.subdivisions * ngpus;
-	printf("Learning Rate: %g, Momentum: %g, Decay: %g\n", net.learning_rate, net.momentum, net.decay);
+	printf("Learning Rate: %f, Momentum: %g, Decay: %g\n", net.learning_rate, net.momentum, net.decay);
 	data train, buffer;
 
 	layer l = net.layers[net.n - 1];
@@ -105,7 +105,7 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 		avg_loss = avg_loss*.9 + loss*.1;
 
 		i = get_current_batch(net);
-		printf("%d: %f, %f avg, %f rate, %lf seconds, %d images\n", get_current_batch(net), loss, avg_loss, get_current_rate(net), sec(clock() - time), i*imgs);
+		printf("%d: %f, %f avg, %0.25f rate, %lf seconds, %d images\n", get_current_batch(net), loss, avg_loss, get_current_rate(net), sec(clock() - time), i*imgs);
 		if (i % 1000 == 0 || i<1000 && i%100==0 ) {
 #ifdef GPU
 			if (ngpus != 1) sync_nets(nets, ngpus, 0);
@@ -126,7 +126,7 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 
 
 void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, float iter_in_k, char* pr_rc_filename, int vis_detections, int save_detections) {
-	int i, j, index;
+	int i, j, c, index;
 	
 	 
 	network net = parse_network_cfg(cfgfile);
@@ -194,14 +194,10 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 
 		for (j = 0; j < l.h; j++) {
 			for (i = 0; i < l.w; i++) {
-				index = j*l.w*l.classes + i*l.classes;
-
-				if (truths[index + background_cls_id] == -1) continue; //it means this ambiguous cell
-				
+				index = j*l.w*l.classes + i*l.classes;				
+				if (truths[index + background_cls_id] == -1) continue; //it means this ambiguous cell				
 				int cls_id = max_index(truths + index, l.classes);
-
 				int prediction = max_index(predictions + index, l.classes);
-
 
 				if (prediction == background_cls_id) {
 					if (prediction == cls_id) TN++;
@@ -209,12 +205,10 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 						if (cls_id == fire_cls_id) FN_fire++;
 						else if (cls_id == smoke_cls_id) FN_smoke++;
 						else { 
-							printf("false negative has to be either fire or smoke\n"); 
-							
+							printf("false negative has to be either fire or smoke\n"); 							
 							system("pause");
 							return 0;
 						}
-
 					}
 				}
 				else if (prediction == fire_cls_id) {
@@ -245,11 +239,8 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 		count++;
 	}
 
-
 	fprintf(file, "%0.1f:  %f   %f   %f   %f\n", iter_in_k, TP_fire / (TP_fire+FP_fire), TP_fire/ (TP_fire+FN_fire), TP_smoke / (TP_smoke + FP_smoke), TP_smoke / (TP_smoke + FN_smoke));
-
 }
-
 
 void test_patch_classifier(char* datacfg, char *cfgfile, char* weightfile, char *filename) {
 	network net = parse_network_cfg(cfgfile);
