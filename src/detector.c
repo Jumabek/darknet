@@ -253,11 +253,7 @@ void print_wider_detections(char* id, box *boxes, float **probs, int total, int 
 	find_replace(id, "images", "predictions", id);
 	snprintf(buf, 1024, "%s.txt", id);
 
-	//printf("buf = %s\n", buf);
-
-	int index = getposition(buf,strlen(buf),'\\');
-	//printf("slash_index = %d\n",index);
-	
+	int index = getposition(buf,strlen(buf),'\\');	
 	char folder_name[1024];
 	memcpy(folder_name, buf, index * sizeof(char));
 	folder_name[index] = '\0';
@@ -266,32 +262,26 @@ void print_wider_detections(char* id, box *boxes, float **probs, int total, int 
 	char predictions_folder_name[1024];
 	memcpy(predictions_folder_name, folder_name, second_index * sizeof(char));
 	predictions_folder_name[second_index] = '\0';
-
-	/*
+	
 	struct stat sb;
 	stat(predictions_folder_name, &sb);
-	if (!(sb.st_mode & S_IFDIR)) {
+	if (!(sb.st_mode & S_IFDIR)) 
 		mkdir(predictions_folder_name, 0755);
-	}
 
 	stat(folder_name, &sb);
-	if (!(sb.st_mode & S_IFDIR)) {
+	if (!(sb.st_mode & S_IFDIR)) 
 		mkdir(folder_name, 0755);
-		//printf("folder = %s is created \n", folder_name);
-	}
-	*/
-
+	
+	
 	FILE *fid = fopen(buf, "w");
 
-	//count num of non-zero predictions, ineffective, but This is only for validation. 
-	//so it is okay tradeoff some speed for time of code writing
-	int i, j;
+	//count num of non-zero predictions	
+	int i, j,c;
 	int num_predictions = 0;
-	for (i = 0; i < total; ++i) {
-		if (probs[i][0]) { //notice I am only checking class 0 
-			num_predictions++;
-		}
-	}
+	for (i = 0; i < total; ++i)
+		for (c=0;c<classes;c++)
+			if (probs[i][0])  
+				num_predictions++;			
 
 	fprintf(fid, "\n%d\n", num_predictions);
 
