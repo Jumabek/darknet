@@ -7,6 +7,8 @@
 #include "demo.h"
 #include "option_list.h"
 
+#include <sys/stat.h>
+
 #ifdef OPENCV
 #include "opencv2/highgui/highgui_c.h"
 #endif
@@ -234,6 +236,84 @@ void print_imagenet_detections(FILE *fp, int id, box *boxes, float **probs, int 
     }
 }
 
+int getposition(const char *array, int length, char c)
+{
+	for (size_t i = length-1; i >=0; i--)
+	{
+		if (array[i] == c)
+			return i;
+	}
+	return -1;
+}
+
+void print_wider_detections(char* id, box *boxes, float **probs, int total, int classes, int image_w, int image_h)
+{
+	char buf[1024];
+
+	find_replace(id, "images", "predictions", id);
+	snprintf(buf, 1024, "%s.txt", id);
+
+	//printf("buf = %s\n", buf);
+
+	int index = getposition(buf,strlen(buf),'\\');
+	//printf("slash_index = %d\n",index);
+	
+	char folder_name[1024];
+	memcpy(folder_name, buf, index * sizeof(char));
+	folder_name[index] = '\0';
+	
+	int second_index = getposition(folder_name, strlen(folder_name), '\\');
+	char predictions_folder_name[1024];
+	memcpy(predictions_folder_name, folder_name, second_index * sizeof(char));
+	predictions_folder_name[second_index] = '\0';
+
+	/*
+	struct stat sb;
+	stat(predictions_folder_name, &sb);
+	if (!(sb.st_mode & S_IFDIR)) {
+		mkdir(predictions_folder_name, 0755);
+	}
+
+	stat(folder_name, &sb);
+	if (!(sb.st_mode & S_IFDIR)) {
+		mkdir(folder_name, 0755);
+		//printf("folder = %s is created \n", folder_name);
+	}
+	*/
+
+	FILE *fid = fopen(buf, "w");
+
+	//count num of non-zero predictions, ineffective, but This is only for validation. 
+	//so it is okay tradeoff some speed for time of code writing
+	int i, j;
+	int num_predictions = 0;
+	for (i = 0; i < total; ++i) {
+		if (probs[i][0]) { //notice I am only checking class 0 
+			num_predictions++;
+		}
+	}
+
+	fprintf(fid, "\n%d\n", num_predictions);
+
+	for (i = 0; i < total; ++i) {
+		float xmin = boxes[i].x - boxes[i].w / 2.;
+		float ymin = boxes[i].y - boxes[i].h / 2.;
+		float w = boxes[i].w;
+		float h = boxes[i].h;
+
+		if (xmin < 0) xmin = 0;
+		if (ymin < 0) ymin = 0;
+		if (w > image_w) w = image_w;
+		if (h > image_h) h = image_h;
+
+		for (j = 0; j < classes; ++j) {
+			if (probs[i][j]) fprintf(fid, "%f %f %f %f %f\n",
+				xmin, ymin, w, h, probs[i][j]);
+		}
+	}
+	fclose(fid);
+}
+
 void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
 {
     int j;
@@ -293,6 +373,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
     FILE **fps = 0;
     int coco = 0;
     int imagenet = 0;
+	int wider = 0;
     if(0==strcmp(type, "coco")){
         snprintf(buff, 1024, "%s/coco_results.json", prefix);
         fp = fopen(buff, "w");
@@ -304,13 +385,17 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
         imagenet = 1;
         classes = 200;
 	}
+	else if (0 == strcmp(type, "wider")) {
+		wider = 1;
+	}
 	else if (0 == strcmp(type, "caltech")) {
 		fps = calloc(classes, sizeof(FILE *));
 		for (j = 0; j < classes; ++j) {
 			snprintf(buff, 1024, "%s/%s.txt", prefix,output_file);
 			fps[j] = fopen(buff, "w");
 		}
-	}else {
+	}
+	else {
         fps = calloc(classes, sizeof(FILE *));
         for(j = 0; j < classes; ++j){
             snprintf(buff, 1024, "%s/%s%s.txt", prefix, base, names[j]);
@@ -363,6 +448,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
         }
         for(t = 0; t < nthreads && i+t-nthreads < m; ++t){
             char *path = paths[i+t-nthreads];
+			//printf("image loaded = %s\n", path);
             char *id = basecfg(path);
             float *X = val_resized[t].data;
             network_predict(net, X);
@@ -374,7 +460,9 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
                 print_cocos(fp, path, boxes, probs, l.w*l.h*l.n, classes, w, h);
             } else if (imagenet){
                 print_imagenet_detections(fp, i+t-nthreads+1, boxes, probs, l.w*l.h*l.n, classes, w, h);
-            } else {
+            }else if (wider) {
+				print_wider_detections(id, boxes, probs, l.w*l.h*l.n, classes, w, h);
+			}else {
                 print_detector_detections(fps, id, boxes, probs, l.w*l.h*l.n, classes, w, h);
             }
             free(id);
