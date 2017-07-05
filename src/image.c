@@ -266,7 +266,6 @@ void draw_patch_detections(image im, float *predictions, int w, int h, int class
 			float red = get_color(2, offset, classes);
 			float green = get_color(1, offset, classes);
 			float blue = get_color(0, offset, classes);
-			float rgb[3];
 			draw_box_width(im, i * 32 + padding, j * 32 + padding, (i + 1) * 32 - padding, (j + 1) * 32- padding,width, red, green, blue);
 		}
 	}

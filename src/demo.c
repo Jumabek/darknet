@@ -60,7 +60,7 @@ void detect_patch_in_thread(void *ptr) {
 	float *X = det_s.data;
 	float *predictions = network_predict(net, X);
 	
-
+	/*
 	for (j = 0; j < l.h; j++) {
 		for (i = 0; i < l.w; i++) {
 			index = j*l.w*l.classes + i*l.classes;
@@ -70,7 +70,9 @@ void detect_patch_in_thread(void *ptr) {
 				printf("predictions[%d][%d][%d] = %f\n", j, i, c, predictions[index + c]);
 		}
 	}
+	*/
 	draw_patch_detections(det_s, predictions, l.w, l.h, l.classes);
+	
 	return 0;
 }
 
@@ -368,5 +370,6 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 			before = after;
 			printf("\nFPS:%.1f\n", fps);
 		}
+		
 	}
 }

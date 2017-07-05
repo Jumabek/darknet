@@ -302,6 +302,7 @@ void print_wider_detections(char* id, box *boxes, float **probs, int total, int 
 		}
 	}
 	fclose(fid);
+	free(id);
 }
 
 void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
@@ -388,7 +389,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
 	else {
         fps = calloc(classes, sizeof(FILE *));
         for(j = 0; j < classes; ++j){
-            snprintf(buff, 1024, "%s/%s%s.txt", prefix, base, names[j]);
+            snprintf(buff, 1024, "%s/%s%s-%s.txt", prefix, base, names[j],output_file);
             fps[j] = fopen(buff, "w");
         }
     }
@@ -455,7 +456,7 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
 			}else {
                 print_detector_detections(fps, id, boxes, probs, l.w*l.h*l.n, classes, w, h);
             }
-            free(id);
+            //free(id);
             free_image(val[t]);
             free_image(val_resized[t]);
         }
