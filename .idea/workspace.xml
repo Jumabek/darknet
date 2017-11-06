@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="56a07c63-9781-48e0-882a-82c4f1caf7e5" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/100_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/100_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/100_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/100_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/100_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/100_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/100_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/100_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/101_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/101_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/101_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/101_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/101_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/101_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/101_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/101_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/102_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/102_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/102_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/102_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/102_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/102_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/102_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/102_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/103_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/103_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/103_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/103_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/103_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/103_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/103_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/103_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/104_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/104_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/104_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/104_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/104_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/104_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/104_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/104_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/105_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/105_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/105_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/105_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/105_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/105_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/105_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/105_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/106_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/106_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/106_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/106_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/106_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/106_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/106_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/106_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/107_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/107_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/107_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/107_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/107_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/107_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/107_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/107_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/108_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/108_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/108_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/108_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/108_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/108_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/108_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/108_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/109_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/109_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/109_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/109_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/109_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/109_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/109_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/109_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/110_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/110_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/110_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/110_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/110_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/110_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/110_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/110_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/111_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/111_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/111_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/111_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/111_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/111_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/111_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/111_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/112_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/112_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/112_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/112_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/112_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/112_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/112_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/112_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/113_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/113_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/113_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/113_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/113_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/113_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/113_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/113_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/114_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/114_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/114_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/114_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/114_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/114_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/114_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/114_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/115_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/115_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/115_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/115_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/115_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/115_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/115_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/115_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/116_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/116_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/116_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/116_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/116_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/116_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/116_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/116_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/117_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/117_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/117_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/117_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/117_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/117_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/117_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/117_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/118_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/118_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/118_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/118_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/118_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/118_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/118_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/118_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/119_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/119_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/119_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/119_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/119_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/119_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/119_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/119_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/120_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/120_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/120_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/120_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/120_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/120_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/120_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/120_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/121_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/121_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/121_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/121_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/121_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/121_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/121_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/121_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/122_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/122_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/122_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/122_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/122_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/122_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/122_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/122_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/123_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/123_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/123_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/123_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/123_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/123_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/123_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/123_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/124_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/124_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/124_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/124_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/124_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/124_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/124_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/124_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/125_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/125_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/125_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/125_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/125_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/125_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/125_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/125_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/126_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/126_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/126_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/126_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/126_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/126_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/126_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/126_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/32_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/32_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/32_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/32_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/32_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/32_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/32_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/32_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/33_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/33_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/33_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/33_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/33_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/33_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/33_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/33_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/34_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/34_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/34_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/34_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/34_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/34_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/34_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/34_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/35_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/35_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/35_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/35_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/35_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/35_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/35_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/35_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/36_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/36_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/36_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/36_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/36_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/36_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/36_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/36_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/37_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/37_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/37_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/37_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/37_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/37_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/37_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/37_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/38_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/38_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/38_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/38_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/38_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/38_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/38_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/38_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/39_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/39_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/39_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/39_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/39_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/39_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/39_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/39_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/40_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/40_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/40_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/40_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/40_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/40_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/40_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/40_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/41_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/41_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/41_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/41_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/41_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/41_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/41_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/41_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/42_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/42_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/42_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/42_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/42_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/42_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/42_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/42_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/43_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/43_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/43_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/43_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/43_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/43_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/43_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/43_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/44_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/44_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/44_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/44_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/44_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/44_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/44_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/44_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/45_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/45_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/45_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/45_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/45_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/45_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/45_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/45_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/46_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/46_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/46_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/46_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/46_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/46_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/46_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/46_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/47_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/47_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/47_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/47_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/47_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/47_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/47_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/47_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/48_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/48_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/48_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/48_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/48_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/48_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/48_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/48_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/49_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/49_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/49_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/49_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/49_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/49_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/49_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/49_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/50_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/50_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/50_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/50_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/50_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/50_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/50_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/50_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/51_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/51_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/51_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/51_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/51_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/51_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/51_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/51_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/52_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/52_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/52_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/52_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/52_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/52_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/52_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/52_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/53_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/53_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/53_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/53_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/53_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/53_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/53_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/53_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/54_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/54_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/54_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/54_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/54_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/54_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/54_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/54_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/55_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/55_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/55_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/55_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/55_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/55_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/55_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/55_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/56_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/56_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/56_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/56_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/56_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/56_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/56_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/56_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/57_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/57_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/57_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/57_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/57_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/57_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/57_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/57_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/58_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/58_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/58_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/58_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/58_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/58_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/58_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/58_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/59_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/59_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/59_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/59_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/59_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/59_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/59_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/59_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/60_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/60_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/60_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/60_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/60_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/60_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/60_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/60_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/61_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/61_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/61_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/61_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/61_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/61_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/61_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/61_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/62_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/62_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/62_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/62_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/62_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/62_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/62_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/62_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/63_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/63_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/63_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/63_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/63_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/63_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/63_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/63_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/64_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/64_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/64_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/64_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/64_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/64_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/64_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/64_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/65_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/65_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/65_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/65_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/65_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/65_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/65_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/65_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/66_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/66_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/66_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/66_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/66_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/66_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/66_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/66_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/67_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/67_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/67_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/67_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/67_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/67_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/67_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/67_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/68_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/68_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/68_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/68_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/68_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/68_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/68_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/68_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/69_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/69_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/69_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/69_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/69_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/69_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/69_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/69_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/70_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/70_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/70_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/70_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/70_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/70_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/70_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/70_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/71_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/71_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/71_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/71_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/71_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/71_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/71_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/71_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/72_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/72_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/72_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/72_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/72_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/72_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/72_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/72_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/73_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/73_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/73_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/73_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/73_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/73_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/73_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/73_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/74_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/74_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/74_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/74_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/74_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/74_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/74_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/74_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/75_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/75_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/75_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/75_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/75_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/75_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/75_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/75_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/76_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/76_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/76_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/76_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/76_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/76_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/76_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/76_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/77_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/77_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/77_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/77_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/77_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/77_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/77_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/77_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/78_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/78_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/78_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/78_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/78_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/78_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/78_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/78_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/79_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/79_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/79_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/79_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/79_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/79_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/79_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/79_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/80_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/80_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/80_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/80_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/80_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/80_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/80_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/80_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/81_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/81_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/81_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/81_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/81_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/81_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/81_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/81_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/82_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/82_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/82_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/82_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/82_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/82_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/82_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/82_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/83_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/83_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/83_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/83_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/83_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/83_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/83_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/83_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/84_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/84_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/84_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/84_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/84_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/84_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/84_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/84_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/85_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/85_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/85_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/85_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/85_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/85_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/85_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/85_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/86_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/86_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/86_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/86_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/86_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/86_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/86_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/86_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/87_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/87_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/87_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/87_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/87_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/87_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/87_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/87_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/88_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/88_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/88_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/88_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/88_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/88_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/88_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/88_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/89_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/89_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/89_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/89_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/89_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/89_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/89_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/89_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/90_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/90_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/90_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/90_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/90_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/90_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/90_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/90_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/91_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/91_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/91_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/91_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/91_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/91_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/91_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/91_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/92_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/92_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/92_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/92_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/92_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/92_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/92_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/92_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/93_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/93_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/93_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/93_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/93_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/93_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/93_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/93_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/94_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/94_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/94_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/94_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/94_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/94_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/94_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/94_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/95_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/95_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/95_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/95_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/95_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/95_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/95_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/95_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/96_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/96_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/96_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/96_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/96_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/96_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/96_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/96_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/97_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/97_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/97_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/97_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/97_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/97_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/97_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/97_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/98_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/98_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/98_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/98_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/98_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/98_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/98_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/98_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/99_0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/99_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/99_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/99_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/99_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/99_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/99_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/99_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/data/labels/make_labels.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/yolo-voc.2.0.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/yolo-voc.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/yolo.2.0.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/darknet/x64/yolo.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation10.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation11.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation13.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation15.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation16.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation17.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation18.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation19.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation20.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation21.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation22.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation23.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation24.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation25.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation26.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation27.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation28.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation29.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation30.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation31.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation32.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation33.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation34.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation35.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation36.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation37.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation38.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation39.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation40.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation41.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation42.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation43.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last100.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last101.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last102.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last103.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last104.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last105.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last106.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last107.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last43.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last45.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last46.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last47.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last48.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last49.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last50.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last51.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last52.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last53.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last54.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last55.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last56.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last57.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last58.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last59.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last60.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last61.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last62.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last63.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last64.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last65.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last66.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last67.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last68.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last69.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last70.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last71.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last72.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last73.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last74.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last75.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last76.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last77.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last78.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last79.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last80.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last81.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last82.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last83.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last84.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last85.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last86.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last87.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last88.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last89.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last90.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last91.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last92.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last93.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last94.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last95.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last96.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last97.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last98.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/animal2_evaluation_last99.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/darknet/darknet.vcxproj" afterPath="$PROJECT_DIR$/build/darknet/darknet.vcxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/darknet/yolo_console_dll.vcxproj" afterPath="$PROJECT_DIR$/build/darknet/yolo_console_dll.vcxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/.ipynb_checkpoints/VOC Evaluation Code-checkpoint.ipynb" afterPath="$PROJECT_DIR$/scripts/.ipynb_checkpoints/VOC Evaluation Code-checkpoint.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/VOC Evaluation Code.ipynb" afterPath="$PROJECT_DIR$/scripts/VOC Evaluation Code.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/data.c" afterPath="$PROJECT_DIR$/src/data.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/demo.c" afterPath="$PROJECT_DIR$/src/demo.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/demo.h" afterPath="$PROJECT_DIR$/src/demo.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detector.c" afterPath="$PROJECT_DIR$/src/detector.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/image.c" afterPath="$PROJECT_DIR$/src/image.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/image.h" afterPath="$PROJECT_DIR$/src/image.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layer.c" afterPath="$PROJECT_DIR$/src/layer.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layer.h" afterPath="$PROJECT_DIR$/src/layer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/network.c" afterPath="$PROJECT_DIR$/src/network.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/parser.c" afterPath="$PROJECT_DIR$/src/parser.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/patch_classifier.c" afterPath="$PROJECT_DIR$/src/patch_classifier.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/region_layer.c" afterPath="$PROJECT_DIR$/src/region_layer.c" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="234" />
+    <option name="y" value="180" />
+    <option name="width" value="900" />
+    <option name="height" value="1410" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="darknet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="darknet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="darknet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="darknet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56a07c63-9781-48e0-882a-82c4f1caf7e5" name="Default" comment="" />
+      <created>1509930600423</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1509930600423</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1216" height="1896" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+</project>

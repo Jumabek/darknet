@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <math.h>
 
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -277,13 +278,16 @@ void draw_patch_detections(image im, float *predictions, int w, int h, int class
 #ifdef OPENCV
 void draw_patch_detections_cv(IplImage* show_img, float *predictions, int w, int h, int classes)
 {
+	if (!show_img) {
+		return;
+	}
 	int i, j, c;
 	int red = 255;
 	int green = 255;
 	int blue = 255;
 	int background_cls_id = classes - 1;
 	int padding = 1;
-	int width = 8;
+	int width = 4;
 
 	int img_width = show_img->width;
 	int img_height = show_img->height;
@@ -324,14 +328,14 @@ void draw_detections_cv(IplImage* show_img, int num, float thresh, box *boxes, f
 {
 	int i;
 	int detection_count = 0;
-
+	
 
 	for (i = 0; i < num; ++i) {
 		int class = max_index(probs[i], classes);
 		float prob = probs[i][class];
 		if (prob > thresh) {
 			detection_count++;
-			int width = show_img->height * .012;
+			int width = show_img->height * .006;
 
 			if (0) {
 				width = pow(prob, 1. / 2.) * 10 + 1;
@@ -387,24 +391,42 @@ void draw_detections_cv(IplImage* show_img, int num, float thresh, box *boxes, f
 			black_color.val[0] = 0;
 			CvFont font;
 			cvInitFont(&font, CV_FONT_HERSHEY_COMPLEX, font_size, font_size, 0, font_size * 3, 8);
-			cvPutText(show_img, names[class], pt_text, &font, black_color);
-
-			if (draw_detection_count) {
-				CvScalar purple_color;
-				purple_color.val[0] = (red +0.1) * 256;
-				purple_color.val[1] = (green+0.1) * 256;
-				purple_color.val[2] = (blue+0.1) * 256;
-
-				CvPoint pt_text_cnt;
-				pt_text_cnt.x = show_img->width - 60;
-				pt_text_cnt.y = 60;
-
-				char count[1024];
-				_itoa(detection_count, count, 10);
-
-				cvPutText(show_img, count, pt_text_cnt, &font, purple_color);
-			}
+			cvPutText(show_img, names[class], pt_text, &font, black_color);			
 		}
+	}
+
+	if (draw_detection_count) {
+		if (!show_img) return; 
+
+		float const font_size = show_img->height / 1000.F;
+		int offset = 0 * 123457 % classes;
+		float red = get_color(2, offset, classes);
+		float green = get_color(1, offset, classes);
+		float blue = get_color(0, offset, classes);
+		float rgb[3];
+
+		CvScalar purple_color;
+		purple_color.val[0] = (red + 0.1) * 256;
+		purple_color.val[1] = (green + 0.1) * 256;
+		purple_color.val[2] = (blue + 0.1) * 256;
+
+		CvPoint pt_text_cnt;
+		pt_text_cnt.x = show_img->width - 20;
+		pt_text_cnt.y = 20;
+
+		char str_count[20];
+		int new_count = 3;
+		snprintf(str_count, sizeof(str_count), "%d", (const int)detection_count);
+
+		str_count[strlen(str_count)] = '\0';
+		
+		CvScalar black_color;
+		black_color.val[0] = 0;
+
+		CvFont font;
+		cvInitFont(&font, CV_FONT_HERSHEY_COMPLEX, font_size, font_size, 0, font_size * 4, 8);
+		printf("detection_count = %d \t str_count %s\t %d \n", detection_count, str_count, strlen(str_count));
+		cvPutText(show_img, str_count, pt_text_cnt, &font, black_color);
 	}
 }
 #endif
@@ -691,6 +713,66 @@ image ipl_to_image(IplImage* src)
 			}
 		}
 	}
+	return out;
+}
+
+
+image ipl_to_image_with_firemask(IplImage* src)
+{
+	unsigned char *data = (unsigned char *)src->imageData;
+	int h = src->height;
+	int w = src->width;
+	int c = src->nChannels;
+	int step = src->widthStep;
+	image out = make_image(w, h, c);
+	int i, j, k, count = 0;;
+
+	for (k = 0; k < c-1; ++k) {
+		for (i = 0; i < h; ++i) {
+			for (j = 0; j < w; ++j) {
+				out.data[count++] = data[i*step + j*c + k] / 255.;
+			}
+		}
+	}
+	
+	IplImage *firemask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
+	unsigned char *firedata = (unsigned char*)firemask->imageData;
+	//obtaining fire mask
+	cvInRangeS(src, cvScalar(0, 0, 240, 0), cvScalar(50, 255, 255, 0), firemask);
+
+	for (k = 0; k < 1; ++k) {
+		for (i = 0; i < h; ++i) {
+			for (j = 0; j < w; ++j) {
+				out.data[count++] = firedata[i*step + j*c + k] / 255.;
+			}
+		}
+	}
+
+	return out;
+}
+
+
+image load_image_with_firemask_cv(char *filename, int channels)
+{
+	IplImage* src = 0;
+	int flag = -1;
+	if (channels == 4) flag = 2;
+	else {
+		fprintf(stderr, "OpenCV can't force load with %d channels\n", channels);
+	}
+
+	if ((src = cvLoadImage(filename, flag)) == 0)
+	{
+		fprintf(stderr, "Cannot load image \"%s\"\n", filename);
+		char buff[256];
+		sprintf(buff, "echo %s >> bad.list", filename);
+		system(buff);
+		return make_image(10, 10, 3);
+		//exit(0);
+	}
+	image out = ipl_to_image_with_firemask(src);
+	cvReleaseImage(&src);
+	rgbgr_image(out);
 	return out;
 }
 
@@ -1437,6 +1519,27 @@ image load_image(char *filename, int w, int h, int c)
 		out = resized;
 	}
 	return out;
+}
+
+image load_image_with_firemask(char *filename, int w, int h, int c)
+{
+#ifdef OPENCV
+	image out = load_image_with_firemask_cv(filename, c);
+#else
+	image out = load_image_stb(filename, c);
+#endif
+
+	if ((h && w) && (h != out.h || w != out.w)) {
+		image resized = resize_image(out, w, h);
+		free_image(out);
+		out = resized;
+	}
+	return out;
+}
+
+image load_image_color_with_firemask(char *filename, int w, int h)
+{
+	return load_image_with_firemask(filename, w, h, 4); //+1 channel for firemask
 }
 
 image load_image_color(char *filename, int w, int h)

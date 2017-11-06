@@ -107,6 +107,8 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
         train = buffer;
         load_thread = load_data(args);
 
+
+
         /*
            int k;
            for(k = 0; k < l.max_boxes; ++k){
@@ -329,7 +331,8 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile)
 				break;
 			}
 		}
-		
+		 
+
 		for (int i = strlen(weightfile) - 1; i >= 0; i--) {
 			if (weightfile[i] == '/' || weightfile[i] == '\\' ) {
 				slash_index = i;

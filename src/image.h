@@ -23,7 +23,7 @@ void draw_bbox(image a, box bbox, int w, float r, float g, float b);
 void draw_label(image a, int r, int c, image label, const float *rgb);
 void write_label(image a, int r, int c, image *characters, char *string, float *rgb);
 void draw_detections(image im, int num, float thresh, box *boxes, float **probs, char **names, image **labels, int classes,int draw_detection_counts);
-void draw_patch_detections(image im, int *predictions, int w, int h, int classes);
+void draw_patch_detections(image im, float *predictions, int w, int h, int classes);
 image image_distance(image a, image b);
 void scale_image(image m, float s);
 image crop_image(image im, int dx, int dy, int w, int h);
@@ -72,6 +72,7 @@ image float_to_image(int w, int h, int c, float *data);
 image copy_image(image p);
 image load_image(char *filename, int w, int h, int c);
 image load_image_color(char *filename, int w, int h);
+image load_image_color_with_firemask(char *filename, int w, int h);
 image **load_alphabet();
 
 float get_pixel(image m, int x, int y, int c);

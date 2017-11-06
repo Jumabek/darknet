@@ -156,7 +156,7 @@ void demo(char *cfgfile, char *weightfile, float thresh, int cam_index, const ch
 	SetCurrentDirectory(Buffer);
 	
 
-    image **alphabet = load_alphabet();
+	image **alphabet = 0;//load_alphabet();
     int delay = frame_skip;
     demo_names = names;
     demo_alphabet = alphabet;
@@ -288,7 +288,7 @@ void demo(char *cfgfile, char *weightfile, float thresh, int cam_index, const ch
 }
 #endif
 
-void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, char **names, int classes, int frame_skip)
+void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, int classes, int frame_skip)
 {
 	//skip = frame_skip;
 	int BUFSIZE = 1000;
@@ -300,7 +300,6 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 
 
 	int delay = frame_skip;
-	demo_names = names;
 	demo_classes = classes;
 	demo_thresh = thresh;
 	printf("Demo\n");

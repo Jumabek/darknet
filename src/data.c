@@ -52,13 +52,32 @@ char **get_random_paths(char **paths, int n, int m)
     int i;
     pthread_mutex_lock(&mutex);
 	//printf("n = %d \n", n);
+
+	//m = 30000;
+	int offset = 0;
     for(i = 0; i < n; ++i){		
-        int index = random_gen() % m;
+        int index = offset + random_gen() % (m - offset);
         random_paths[i] = paths[index];
-        //if(i == 0) printf("%s\n", paths[index]);
-    }
+           }
     pthread_mutex_unlock(&mutex);
     return random_paths;
+}
+
+char **get_next_paths(char **paths, int n, int m, int iters)
+{
+	char **next_paths = calloc(n, sizeof(char*));
+	int i;
+	pthread_mutex_lock(&mutex);
+	m -= 50;
+	for (i = 0; i < n; ++i) {
+		int offset = iters*n + 64281;
+		if (offset + i >= m) printf("offset+i = %d\n", offset + i);
+		next_paths[i] = paths[offset +i];
+		printf("m= %d paths[%d] == ", m, offset + i);
+		printf("%s\n", paths[offset + i]);
+	}
+	pthread_mutex_unlock(&mutex);
+	return next_paths;
 }
 
 char **find_replace_paths(char **paths, int n, char *find, char *replace)
@@ -103,7 +122,7 @@ matrix load_image_paths(char **paths, int n, int w, int h)
     X.cols = 0;
 
     for(i = 0; i < n; ++i){
-        image im = load_image_color(paths[i], w, h);
+        image im = load_image_color_with_firemask(paths[i], w, h);
         X.vals[i] = im.data;
         X.cols = im.h*im.w*im.c;
     }
@@ -772,6 +791,60 @@ data load_data_swag(char **paths, int n, int classes, float jitter)
     return d;
 }
 
+
+data load_data_fire(int n, char **paths, int m, int w, int h, int boxes, int classes, float jitter, float hue, float saturation, float exposure)
+{
+	char **random_paths = get_random_paths(paths, n, m);
+	int i;
+	data d = { 0 };
+	d.shallow = 0;
+
+	d.X.rows = n;
+	d.X.vals = calloc(d.X.rows, sizeof(float*));
+	d.X.cols = h*w * 4;
+
+	d.y = make_matrix(n, 5 * boxes);
+	for (i = 0; i < n; ++i) {
+		image orig = load_image_color(random_paths[i], 0, 0);
+
+		int oh = orig.h;
+		int ow = orig.w;
+
+		int dw = (ow*jitter);
+		int dh = (oh*jitter);
+
+		int pleft = rand_uniform(-dw, dw);
+		int pright = rand_uniform(-dw, dw);
+		int ptop = rand_uniform(-dh, dh);
+		int pbot = rand_uniform(-dh, dh);
+
+		int swidth = ow - pleft - pright;
+		int sheight = oh - ptop - pbot;
+
+		float sx = (float)swidth / ow;
+		float sy = (float)sheight / oh;
+
+		int flip = random_gen() % 2;
+		image cropped = crop_image(orig, pleft, ptop, swidth, sheight);
+
+		float dx = ((float)pleft / ow) / sx;
+		float dy = ((float)ptop / oh) / sy;
+
+		image sized = resize_image(cropped, w, h);
+		if (flip) flip_image(sized);
+		random_distort_image(sized, hue, saturation, exposure);
+		d.X.vals[i] = sized.data;
+
+		fill_truth_detection(random_paths[i], boxes, d.y.vals[i], classes, flip, dx, dy, 1. / sx, 1. / sy);
+
+		free_image(orig);
+		free_image(cropped);
+	}
+	free(random_paths);
+	return d;
+
+}
+
 data load_data_detection(int n, char **paths, int m, int w, int h, int boxes, int classes, float jitter, float hue, float saturation, float exposure)
 {
     char **random_paths = get_random_paths(paths, n, m);
@@ -785,8 +858,8 @@ data load_data_detection(int n, char **paths, int m, int w, int h, int boxes, in
 
     d.y = make_matrix(n, 5*boxes);
     for(i = 0; i < n; ++i){
-        image orig = load_image_color(random_paths[i], 0, 0);
-
+		image orig = load_image_color(random_paths[i], 0, 0);
+		
         int oh = orig.h;
         int ow = orig.w;
 
@@ -825,7 +898,6 @@ data load_data_detection(int n, char **paths, int m, int w, int h, int boxes, in
 }
 
 
-
 void *load_thread(void *ptr)
 {
 	srand(time(0));
@@ -851,6 +923,7 @@ void *load_thread(void *ptr)
         *a.d = load_data_region(a.n, a.paths, a.m, a.w, a.h, a.num_boxes, a.classes, a.jitter, a.hue, a.saturation, a.exposure);
     } else if (a.type == DETECTION_DATA){
         *a.d = load_data_detection(a.n, a.paths, a.m, a.w, a.h, a.num_boxes, a.classes, a.jitter, a.hue, a.saturation, a.exposure);
+		//*a.d = load_data_detection2(a.iters, a.n, a.paths, a.m, a.w, a.h, a.num_boxes, a.classes, a.jitter, a.hue, a.saturation, a.exposure);
     } else if (a.type == SWAG_DATA){
         *a.d = load_data_swag(a.paths, a.n, a.classes, a.jitter);
     } else if (a.type == COMPARE_DATA){
