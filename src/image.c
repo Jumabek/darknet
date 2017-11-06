@@ -724,10 +724,11 @@ image ipl_to_image_with_firemask(IplImage* src)
 	int w = src->width;
 	int c = src->nChannels;
 	int step = src->widthStep;
-	image out = make_image(w, h, c);
+
+	image out = make_image(w, h, c+1); //+1 is for firemask
 	int i, j, k, count = 0;;
 
-	for (k = 0; k < c-1; ++k) {
+	for (k = 0; k < c; ++k) {
 		for (i = 0; i < h; ++i) {
 			for (j = 0; j < w; ++j) {
 				out.data[count++] = data[i*step + j*c + k] / 255.;
@@ -740,10 +741,12 @@ image ipl_to_image_with_firemask(IplImage* src)
 	//obtaining fire mask
 	cvInRangeS(src, cvScalar(0, 0, 240, 0), cvScalar(50, 255, 255, 0), firemask);
 
+	int step2 = firemask->widthStep;
+
 	for (k = 0; k < 1; ++k) {
 		for (i = 0; i < h; ++i) {
 			for (j = 0; j < w; ++j) {
-				out.data[count++] = firedata[i*step + j*c + k] / 255.;
+				out.data[count++] = firedata[i*step2 + j*1 + k] / 255.;
 			}
 		}
 	}
@@ -756,7 +759,7 @@ image load_image_with_firemask_cv(char *filename, int channels)
 {
 	IplImage* src = 0;
 	int flag = -1;
-	if (channels == 4) flag = 2;
+	if (channels == 4) flag = 1;
 	else {
 		fprintf(stderr, "OpenCV can't force load with %d channels\n", channels);
 	}
