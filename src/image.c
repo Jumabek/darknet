@@ -750,6 +750,7 @@ image ipl_to_image_with_firemask(IplImage* src)
 			}
 		}
 	}
+	cvReleaseImage(&firemask);
 
 	return out;
 }
