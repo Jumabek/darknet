@@ -47,6 +47,7 @@ static float *avg;
 void draw_detections_cv(IplImage* show_img, int num, float thresh, box *boxes, float **probs, char **names, image **alphabet, int classes);
 void draw_patch_detections_cv(IplImage* show_img, float *predictions, int w, int h, int classes);
 image get_image_from_stream_resize(CvCapture *cap, int w, int h, IplImage** in_img);
+image get_image_from_stream_resize_with_firemask(CvCapture *cap, int w, int h, IplImage** in_img);
 IplImage* in_img;
 IplImage* det_img;
 IplImage* show_img;
@@ -54,7 +55,7 @@ IplImage* show_img;
 void *fetch_in_thread_with_firemask(void *ptr)
 {
     //in = get_image_from_stream(cap);
-	in = get_image_from_stream_resize(cap, net.w, net.h, &in_img);
+	in = get_image_from_stream_resize_with_firemask(cap, net.w, net.h, &in_img);
     if(!in.data){
         error("Stream closed.");
     }
@@ -221,7 +222,7 @@ void demo(char *cfgfile, char *weightfile, float thresh, int cam_index, const ch
     det_s = in_s;
 
     for(j = 0; j < FRAMES/2; ++j){
-        fetch_in_thread(0);
+		fetch_in_thread(0);
 		detect_in_thread(0);
         disp = det;
 		det_img = in_img;
@@ -272,7 +273,7 @@ void demo(char *cfgfile, char *weightfile, float thresh, int cam_index, const ch
             det   = in;
             det_s = in_s;
         }else {
-            fetch_in_thread(0);
+			fetch_in_thread(0);
 			det_img = in_img;
             det   = in;
             det_s = in_s;
@@ -349,12 +350,12 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 	pthread_t fetch_thread;
 	pthread_t detect_thread;
 
-	fetch_in_thread(0);
+	fetch_in_thread_with_firemask(0);
 	det_img = in_img;
 	det = in;
 	det_s = in_s;
 
-	fetch_in_thread(0);
+	fetch_in_thread_with_firemask(0);
 	detect_patch_in_thread(0);
 	disp = det;
 	det_img = in_img;
@@ -362,7 +363,7 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 	det_s = in_s;
 
 	for (j = 0; j < FRAMES / 2; ++j) {
-		fetch_in_thread(0);
+		fetch_in_thread_with_firemask(0);
 		detect_patch_in_thread(0);
 		disp = det;
 		det_img = in_img;
@@ -382,7 +383,7 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 	while (1) {
 		++count;
 		if (1) {
-			if (pthread_create(&fetch_thread, 0, fetch_in_thread, 0)) error("Thread creation failed");
+			if (pthread_create(&fetch_thread, 0, fetch_in_thread_with_firemask, 0)) error("Thread creation failed");
 			if (pthread_create(&detect_thread, 0, detect_patch_in_thread, 0)) error("Thread creation failed");
 
 			//show_image(disp, "Demo");
@@ -408,7 +409,7 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 			det_s = in_s;
 		}
 		else {
-			fetch_in_thread(0);
+			fetch_in_thread_with_firemask(0);
 			det_img = in_img;
 			det = in;
 			det_s = in_s;
