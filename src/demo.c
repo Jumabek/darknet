@@ -51,7 +51,7 @@ IplImage* in_img;
 IplImage* det_img;
 IplImage* show_img;
 
-void *fetch_in_thread(void *ptr)
+void *fetch_in_thread_with_firemask(void *ptr)
 {
     //in = get_image_from_stream(cap);
 	in = get_image_from_stream_resize(cap, net.w, net.h, &in_img);
@@ -63,6 +63,20 @@ void *fetch_in_thread(void *ptr)
 	memcpy(in_s.data, in.data, in.h*in.w*in.c*sizeof(float));
 	
     return 0;
+}
+
+void *fetch_in_thread(void *ptr)
+{
+	//in = get_image_from_stream(cap);
+	in = get_image_from_stream_resize(cap, net.w, net.h, &in_img);
+	if (!in.data) {
+		error("Stream closed.");
+	}
+	//in_s = resize_image(in, net.w, net.h);
+	in_s = make_image(in.w, in.h, in.c);
+	memcpy(in_s.data, in.data, in.h*in.w*in.c * sizeof(float));
+
+	return 0;
 }
 
 void detect_patch_in_thread(void *ptr) {
