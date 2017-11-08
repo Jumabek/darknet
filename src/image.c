@@ -737,9 +737,11 @@ image ipl_to_image_with_firemask(IplImage* src)
 	}
 	
 	IplImage *firemask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
+	IplImage *hsv = cvCreateImage(cvSize(w,h),IPL_DEPTH_8U,3);
+	cvCvtColor(src, hsv, CV_BGR2HSV);
 	unsigned char *firedata = (unsigned char*)firemask->imageData;
 	//obtaining fire mask
-	cvInRangeS(src, cvScalar(0, 0, 240, 0), cvScalar(50, 255, 255, 0), firemask);
+	cvInRangeS(hsv, cvScalar(0, 0, 240, 0), cvScalar(50, 255, 255, 0), firemask);
 
 	int step2 = firemask->widthStep;
 
@@ -751,6 +753,7 @@ image ipl_to_image_with_firemask(IplImage* src)
 		}
 	}
 	cvReleaseImage(&firemask);
+	cvReleaseImage(&hsv);
 
 	return out;
 }
