@@ -48,6 +48,7 @@ void draw_detections_cv(IplImage* show_img, int num, float thresh, box *boxes, f
 void draw_patch_detections_cv(IplImage* show_img, float *predictions, int w, int h, int classes);
 image get_image_from_stream_resize(CvCapture *cap, int w, int h, IplImage** in_img);
 image get_image_from_stream_resize_with_firemask(CvCapture *cap, int w, int h, IplImage** in_img);
+image get_image_from_stream_resize_with_firemask_and_motion(CvCapture *cap, int w, int h, IplImage** in_img);
 IplImage* in_img;
 IplImage* det_img;
 IplImage* show_img;
