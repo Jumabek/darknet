@@ -716,6 +716,77 @@ image ipl_to_image(IplImage* src)
 	return out;
 }
 
+image ipl_to_image_with_firemask_and_motion(IplImage* src, IplImage* prev)
+{
+	unsigned char *data = (unsigned char *)src->imageData;
+	int h = src->height;
+	int w = src->width;
+	int c = src->nChannels;
+	int step = src->widthStep;
+
+	image out = make_image(w, h, c + 1); //+1 is for firemask
+	int i, j, k, count = 0;;
+
+	for (k = 0; k < c; ++k) {
+		for (i = 0; i < h; ++i) {
+			for (j = 0; j < w; ++j) {
+				out.data[count++] = data[i*step + j*c + k] / 255.;
+			}
+		}
+	}
+
+	IplImage *firemask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
+	IplImage *hsv = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 3);	
+	IplImage *dst = cvCreateImage(cvGetSize(src), src->depth, src->nChannels);
+	IplImage *Imask = cvCreateImage(cvGetSize(src), src->depth, 1);
+	cvSetZero(Imask);
+	for (int y = 0; y < Imask->height; y++) {
+		uchar* ptr = (uchar*)(Imask->imageData + y*Imask->widthStep);
+		for (int x = 0; x < Imask->width; x++) {
+			ptr[3 * x + 2] = 1;
+		}
+	}
+	
+	IplImage *firemask_bin = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
+
+
+	cvCvtColor(src, hsv, CV_BGR2HSV);
+	
+	printf("Size of the dst = (%d,%d,%d)\n\n", dst->width, dst->height, dst->nChannels);
+	cvSub(src, prev, dst, Imask);
+	for (int y = 0; y < dst->height; y++) {
+		uchar* ptr = (uchar*)(dst->imageData + y*dst->widthStep);
+		for (int x = 0; x < dst->width; x++) {
+			printf("(%d,%d,%d) ", ptr[3 * x], ptr[3 * x + 1], ptr[3 * x + 2]);
+			//ptr[3 * x + 2] = 1;
+		}
+		printf("\n");
+	}
+
+
+	//obtaining fire mask
+	cvInRangeS(hsv, cvScalar(0, 0, 240, 0), cvScalar(50, 255, 255, 0), firemask);
+	cvThreshold(firemask, firemask_bin, 180, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
+	unsigned char *firedata = (unsigned char*)firemask_bin->imageData;
+
+	int step2 = firemask->widthStep;
+
+	for (k = 0; k < 1; ++k) {
+		for (i = 0; i < h; ++i) {
+			for (j = 0; j < w; ++j) {
+				out.data[count++] = firedata[i*step2 + j * 1 + k] / 255.;
+			}
+		}
+	}
+	cvReleaseImage(&firemask);
+	cvReleaseImage(&hsv);
+	cvReleaseImage(&firemask_bin);
+	cvReleaseImage(&Imask);
+
+	return out;
+}
+
+
 
 image ipl_to_image_with_firemask(IplImage* src)
 {
@@ -738,10 +809,14 @@ image ipl_to_image_with_firemask(IplImage* src)
 	
 	IplImage *firemask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
 	IplImage *hsv = cvCreateImage(cvSize(w,h),IPL_DEPTH_8U,3);
+	IplImage *firemask_bin = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
+
 	cvCvtColor(src, hsv, CV_BGR2HSV);
-	unsigned char *firedata = (unsigned char*)firemask->imageData;
+	
 	//obtaining fire mask
 	cvInRangeS(hsv, cvScalar(0, 0, 240, 0), cvScalar(50, 255, 255, 0), firemask);
+	cvThreshold(firemask, firemask_bin, 180, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
+	unsigned char *firedata = (unsigned char*)firemask_bin->imageData;
 
 	int step2 = firemask->widthStep;
 
@@ -754,6 +829,7 @@ image ipl_to_image_with_firemask(IplImage* src)
 	}
 	cvReleaseImage(&firemask);
 	cvReleaseImage(&hsv);
+	cvReleaseImage(&firemask_bin);
 
 	return out;
 }
@@ -769,7 +845,7 @@ image load_image_with_firemask_cv(char *filename, int channels)
 	}
 
 	if ((src = cvLoadImage(filename, flag)) == 0)
-	{
+	{		
 		fprintf(stderr, "Cannot load image \"%s\"\n", filename);
 		char buff[256];
 		sprintf(buff, "echo %s >> bad.list", filename);
@@ -777,7 +853,24 @@ image load_image_with_firemask_cv(char *filename, int channels)
 		return make_image(10, 10, 3);
 		//exit(0);
 	}
+	
 	image out = ipl_to_image_with_firemask(src);
+/*
+	char firemask_filename[1024];
+	find_replace(filename, ".jpg", "_firemask.jpg", firemask_filename);
+	find_replace(filename, ".png", "_firemask.png", firemask_filename);
+	
+	int h = src->height;
+	int w = src->width;
+	IplImage *firemask = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
+	IplImage *hsv = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 3);
+	cvCvtColor(src, hsv, CV_BGR2HSV);
+	unsigned char *firedata = (unsigned char*)firemask->imageData;
+	//obtaining fire mask
+	cvInRangeS(hsv, cvScalar(0, 0, 240, 0), cvScalar(50, 255, 255, 0), firemask);
+	cvSaveImage(firemask_filename, firemask,0);
+	*/
+
 	cvReleaseImage(&src);
 	rgbgr_image(out);
 	return out;
@@ -841,6 +934,20 @@ image get_image_from_stream_resize_with_firemask(CvCapture *cap, int w, int h, I
 	cvResize(src, *in_img, CV_INTER_LINEAR);
 	cvResize(src, new_img, CV_INTER_LINEAR);
 	image im = ipl_to_image_with_firemask(new_img);
+	cvReleaseImage(&new_img);
+	rgbgr_image(im);
+	return im;
+}
+
+image get_image_from_stream_resize_with_firemask_and_motion(CvCapture *cap, int w, int h, IplImage** in_img)
+{
+	IplImage* src = cvQueryFrame(cap);
+	if (!src) return make_empty_image(0, 0, 0);
+	IplImage* new_img = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 3);
+	*in_img = cvCreateImage(cvSize(src->width, src->height), IPL_DEPTH_8U, 3);
+	cvResize(src, *in_img, CV_INTER_LINEAR);
+	cvResize(src, new_img, CV_INTER_LINEAR);
+	image im = ipl_to_image_with_firemask_and_motion(new_img,new_img);
 	cvReleaseImage(&new_img);
 	rgbgr_image(im);
 	return im;
