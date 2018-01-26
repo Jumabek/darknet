@@ -483,4 +483,10 @@ void run_patch_classifier(int argc, char **argv)
 		
 		demo_patch_classifier(cfg, weights, thresh, cam_index, filename, classes, frame_skip, prefix);
 	}
+	else if (0 == strcmp(argv[2], "demo_motion")) {
+		list *options = read_data_cfg(datacfg);
+		int classes = option_find_int(options, "classes", 20);
+
+		demo_patch_classifier_motion(cfg, weights, thresh, cam_index, filename, classes, frame_skip, prefix);
+	}
 }
