@@ -118,7 +118,6 @@ struct layer{
     float coord_scale;
     float object_scale;
     float noobject_scale;
-    float class_scale;
     int bias_match;
     int random;
     float thresh;
@@ -131,6 +130,8 @@ struct layer{
     float temperature;
     float probability;
     float scale;
+	
+	float* class_scales;
 
     int *indexes;
     float *rand;

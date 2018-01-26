@@ -24,7 +24,7 @@ region_layer make_region_layer(int batch, int w, int h, int n, int classes, int 
 	l.coords = coords;
 	l.cost = calloc(1, sizeof(float));
 	l.biases = calloc(n * 2, sizeof(float));
-	l.scales = calloc(classes, sizeof(float));
+	l.class_scales = calloc(classes, sizeof(float));
 	l.bias_updates = calloc(n * 2, sizeof(float));
 	l.outputs = h*w*n*(classes + coords + 1);
 	l.inputs = l.outputs;
@@ -234,7 +234,7 @@ void forward_region_layer(const region_layer l, network_state state)
 						}
 					}
 					int index = size*maxi + b*l.outputs + 5;
-					delta_region_class(l.output, l.delta, index, class, l.classes, l.softmax_tree, l.scales[class], &avg_cat);
+					delta_region_class(l.output, l.delta, index, class, l.classes, l.softmax_tree, l.class_scales[class], &avg_cat);
 					++class_count;
 					onlyclass = 1;
 					break;
@@ -265,7 +265,7 @@ void forward_region_layer(const region_layer l, network_state state)
 						if (best_iou > l.thresh) {
 							l.delta[index + 4] = 0;
 							if (l.classfix > 0) {
-								delta_region_class(l.output, l.delta, index + 5, best_class, l.classes, l.softmax_tree, l.scales[best_class]*(l.classfix == 2 ? l.output[index + 4] : 1), &avg_cat);
+								delta_region_class(l.output, l.delta, index + 5, best_class, l.classes, l.softmax_tree, l.class_scales[best_class]*(l.classfix == 2 ? l.output[index + 4] : 1), &avg_cat);
 								++class_count;
 							}
 						}
@@ -338,7 +338,7 @@ void forward_region_layer(const region_layer l, network_state state)
 
 			int class = state.truth[t * 5 + b*l.truths + 4];
 			if (l.map) class = l.map[class];
-			delta_region_class(l.output, l.delta, best_index + 5, class, l.classes, l.softmax_tree, l.scales[class], &avg_cat);
+			delta_region_class(l.output, l.delta, best_index + 5, class, l.classes, l.softmax_tree, l.class_scales[class], &avg_cat);
 			++count;
 			++class_count;
 		}

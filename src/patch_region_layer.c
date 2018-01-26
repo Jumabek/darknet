@@ -21,6 +21,7 @@ patch_region_layer make_patch_region_layer(int batch, int w, int h, int classes)
 	l.classes = classes;
 	l.cost = calloc(1, sizeof(float));
 	l.outputs = h*w*(classes);
+	l.class_scales = calloc(classes, sizeof(float));
 	l.inputs = l.outputs;
 	l.delta = calloc(batch*l.outputs, sizeof(float));
 	l.output = calloc(batch*l.outputs, sizeof(float));
@@ -88,7 +89,7 @@ void forward_patch_region_layer(const patch_region_layer l, network_state state)
 	*(l.cost) = 0;
 
 	
-	l2_cpu_batch(l.batch,l.w,l.h,l.classes, l.output, state.truth, l.delta, l.output,l.class_scale);
+	l2_cpu_batch(l.batch,l.w,l.h,l.classes, l.output, state.truth, l.delta, l.output,l.class_scales);
 
 	l.cost[0] = sum_array_batch(l.output, l.inputs, l.batch);
 }

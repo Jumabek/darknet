@@ -95,8 +95,8 @@ void forward_detection_layer(const detection_layer l, network_state state)
 
                 int class_index = index + i*l.classes;
                 for(j = 0; j < l.classes; ++j) {
-                    l.delta[class_index+j] = l.class_scale * (state.truth[truth_index+1+j] - l.output[class_index+j]);
-                    *(l.cost) += l.class_scale * pow(state.truth[truth_index+1+j] - l.output[class_index+j], 2);
+                    l.delta[class_index+j] = l.class_scales[j] * (state.truth[truth_index+1+j] - l.output[class_index+j]);
+                    *(l.cost) += l.class_scales[j] * pow(state.truth[truth_index+1+j] - l.output[class_index+j], 2);
                     if(state.truth[truth_index + 1 + j]) avg_cat += l.output[class_index+j];
                     avg_allcat += l.output[class_index+j];
                 }

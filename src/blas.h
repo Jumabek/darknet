@@ -33,7 +33,7 @@ void normalize_delta_cpu(float *x, float *mean, float *variance, float *mean_del
 
 void smooth_l1_cpu(int n, float *pred, float *truth, float *delta, float *error);
 void l2_cpu(int n, float *pred, float *truth, float *delta, float *error);
-void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *truth, float *delta, float *error, float class_scale);
+void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *truth, float *delta, float *error, float* class_scale);
 void weighted_sum_cpu(float *a, float *b, float *s, int num, float *c);
 
 void softmax(float *input, int n, float temp, float *output);

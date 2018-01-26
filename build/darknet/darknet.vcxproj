@@ -218,7 +218,6 @@
     <ClCompile Include="..\..\src\parser.c" />
     <ClCompile Include="..\..\src\patch_classifier.c" />
     <ClCompile Include="..\..\src\patch_region_layer.c" />
-    <ClCompile Include="..\..\src\region_ambiguous_layer.c" />
     <ClCompile Include="..\..\src\region_layer.c" />
     <ClCompile Include="..\..\src\reorg_layer.c" />
     <ClCompile Include="..\..\src\rnn.c" />
@@ -275,7 +274,6 @@
     <ClInclude Include="..\..\src\option_list.h" />
     <ClInclude Include="..\..\src\parser.h" />
     <ClInclude Include="..\..\src\patch_region_layer.h" />
-    <ClInclude Include="..\..\src\region_ambiguous_layer.h" />
     <ClInclude Include="..\..\src\region_layer.h" />
     <ClInclude Include="..\..\src\reorg_layer.h" />
     <ClInclude Include="..\..\src\rnn_layer.h" />

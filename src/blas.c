@@ -184,7 +184,7 @@ void smooth_l1_cpu(int n, float *pred, float *truth, float *delta, float *error)
     }
 }
 
-void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *truth, float *delta, float *error, float class_scale)
+void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *truth, float *delta, float *error, float* class_scales)
 {
     int i,j,b,c,index;
 	int non_zeros = 0;
@@ -203,7 +203,7 @@ void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *trut
 					}
 					else {
 						float diff = truth[index] - pred[index];
-						if (c != back_cls_id) diff = class_scale*diff;
+						if (c != back_cls_id) diff = class_scales[c]*diff;
 						error[index] = diff*diff;
 						delta[index] = diff;
 					}

@@ -23,7 +23,6 @@
 #include "option_list.h"
 #include "parser.h"
 #include "region_layer.h"
-#include "region_ambiguous_layer.h"
 #include "patch_region_layer.h"
 #include "reorg_layer.h"
 #include "rnn_layer.h"
@@ -260,7 +259,6 @@ layer parse_region(list *options, size_params params)
     l.coord_scale = option_find_float(options, "coord_scale", 1);
     l.object_scale = option_find_float(options, "object_scale", 1);
     l.noobject_scale = option_find_float(options, "noobject_scale", 1);
-    l.class_scale = option_find_float(options, "class_scale", 1);
     l.bias_match = option_find_int_quiet(options, "bias_match",0);
 
     char *tree_file = option_find_str(options, "tree", 0);
@@ -283,7 +281,7 @@ layer parse_region(list *options, size_params params)
         }
     }
 	
-	char *c = option_find_str(options, "dataset_ratio", 0);
+	char *c = option_find_str(options, "class_scales", 0);
 	if (c) {
 		int len = strlen(c);		
 		int n = 1;
@@ -295,15 +293,15 @@ layer parse_region(list *options, size_params params)
 			error("Number of scales should be equal to number of classes.");
 		}
 		for (i = 0; i < n; ++i) {
-			float ratio = atof(c);
-			l.scales[i] = ratio;
+			float class_scale= atof(c);
+			l.class_scales[i] = class_scale;
 			c = strchr(c, ',') + 1;	
 		}
 	}
 	else {
 		int i;
 		for (i = 0; i < classes; ++i) {
-			l.scales[i] = 1;
+			l.class_scales[i] = 1;
 		}
 	
 	}
@@ -325,8 +323,32 @@ layer parse_patch_region(list *options, size_params params)
 
 	l.max_patches = option_find_int_quiet(options, "max_patches", l.out_w*l.out_h);
 
-	l.class_scale = option_find_float(options, "class_scale", 1);
+	char *c = option_find_str(options, "class_scales", 0);
+	printf(c);
+	if (c) {
+		int len = strlen(c);
+		int n = 1;
+		int i;
+		for (i = 0; i < len; ++i) {
+			if (c[i] == ',') ++n;
+		}
+		if (n != classes) {
+			error("Number of scales should be equal to number of classes.");
+		}
+		for (i = 0; i < n; ++i) {
+			float scale = atof(c);
+			l.class_scales[i] = scale;
+			c = strchr(c, ',') + 1;
+		}
+	}
+	else {
+		int i;
+		for (i = 0; i < classes; ++i) {
+			l.class_scales[i] = 1;
+		}
 
+	}
+	
 	char *map_file = option_find_str(options, "map", 0);
 	if (map_file) l.map = read_map(map_file);
 
@@ -350,7 +372,7 @@ detection_layer parse_detection(list *options, size_params params)
     layer.forced = option_find_int(options, "forced", 0);
     layer.object_scale = option_find_float(options, "object_scale", 1);
     layer.noobject_scale = option_find_float(options, "noobject_scale", 1);
-    layer.class_scale = option_find_float(options, "class_scale", 1);
+    //layer.class_scale = option_find_float(options, "class_scale", 1);
     layer.jitter = option_find_float(options, "jitter", .2);
     layer.random = option_find_int_quiet(options, "random", 0);
     layer.reorg = option_find_int_quiet(options, "reorg", 0);
@@ -687,8 +709,6 @@ network parse_network_cfg(char *filename)
             l = parse_cost(options, params);
         }else if(lt == REGION){
             l = parse_region(options, params);
-		}else if (lt == REGION_AMBIGUOUS) {
-			l = parse_region_ambiguous(options, params);
 		}else if (lt == PATCH_REGION) {
 			l = parse_patch_region(options, params);
         }else if(lt == DETECTION){
