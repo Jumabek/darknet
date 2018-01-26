@@ -351,6 +351,137 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 	pthread_t fetch_thread;
 	pthread_t detect_thread;
 
+	fetch_in_thread(0);
+	det_img = in_img;
+	det = in;
+	det_s = in_s;
+
+	fetch_in_thread(0);
+	detect_patch_in_thread(0);
+	disp = det;
+	det_img = in_img;
+	det = in;
+	det_s = in_s;
+
+	for (j = 0; j < FRAMES / 2; ++j) {
+		fetch_in_thread(0);
+		detect_patch_in_thread(0);
+		disp = det;
+		det_img = in_img;
+		det = in;
+		det_s = in_s;
+	}
+
+	int count = 0;
+
+	cvNamedWindow("Demo", CV_WINDOW_NORMAL);
+	cvMoveWindow("Demo", 0, 0);
+	cvResizeWindow("Demo", 1352, 1013);
+
+
+	double before = get_wall_time();
+
+	while (1) {
+		++count;
+		if (1) {
+			if (pthread_create(&fetch_thread, 0, fetch_in_thread, 0)) error("Thread creation failed");
+			if (pthread_create(&detect_thread, 0, detect_patch_in_thread, 0)) error("Thread creation failed");
+
+			//show_image(disp, "Demo");
+			show_image_cv_ipl(show_img, "Demo");
+			int c = cvWaitKey(1);
+			if (c == 10) {
+				if (frame_skip == 0) frame_skip = 60;
+				else if (frame_skip == 4) frame_skip = 0;
+				else if (frame_skip == 60) frame_skip = 4;
+				else frame_skip = 0;
+			}
+
+			pthread_join(fetch_thread, 0);
+			pthread_join(detect_thread, 0);
+
+			if (delay == 0) {
+				free_image(disp);
+				disp = det;
+				show_img = det_img;
+			}
+			det_img = in_img;
+			det = in;
+			det_s = in_s;
+		}
+		else {
+			fetch_in_thread(0);
+			det_img = in_img;
+			det = in;
+			det_s = in_s;
+			detect_in_thread(0);
+			if (delay == 0) {
+				free_image(disp);
+				disp = det;
+			}
+			show_image(disp, "Demo");
+			cvWaitKey(1);
+		}
+		--delay;
+		if (delay < 0) {
+			delay = frame_skip;
+
+			double after = get_wall_time();
+			float curr = 1. / (after - before);
+			fps = curr;
+			before = after;
+		}
+	}
+}
+
+
+void demo_patch_classifier_motion(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, int classes, int frame_skip)
+{
+	//skip = frame_skip;
+	int BUFSIZE = 1000;
+	TCHAR Buffer[1000];
+	DWORD dwRet;
+	dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
+	sprintf(Buffer, "%s/x64", Buffer);
+	SetCurrentDirectory(Buffer);
+
+
+	int delay = frame_skip;
+	demo_classes = classes;
+	demo_thresh = thresh;
+	printf("Demo\n");
+	net = parse_network_cfg(cfgfile);
+	if (weightfile) {
+		load_weights(&net, weightfile);
+	}
+	set_batch_network(&net, 1);
+
+	srand(2222222);
+
+	if (filename) {
+		printf("video file: %s\n", filename);
+		cap = cvCaptureFromFile(filename);
+	}
+	else {
+		cap = cvCaptureFromCAM(cam_index);
+	}
+
+	if (!cap) error("Couldn't connect to webcam.\n");
+
+	layer l = net.layers[net.n - 1];
+	int j;
+
+	avg = (float *)calloc(l.outputs, sizeof(float));
+	for (j = 0; j < FRAMES; ++j) predictions[j] = (float *)calloc(l.outputs, sizeof(float));
+	for (j = 0; j < FRAMES; ++j) images[j] = make_image(1, 1, 3);
+
+	boxes = (box *)calloc(l.w*l.h*l.n, sizeof(box));
+	probs = (float **)calloc(l.w*l.h*l.n, sizeof(float *));
+	for (j = 0; j < l.w*l.h*l.n; ++j) probs[j] = (float *)calloc(l.classes, sizeof(float *));
+
+	pthread_t fetch_thread;
+	pthread_t detect_thread;
+
 	fetch_in_thread_with_firemask(0);
 	det_img = in_img;
 	det = in;
@@ -433,6 +564,7 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 		}
 	}
 }
+
 
 void demo_patch_classifier_old(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, char **names, int classes, int frame_skip, char *prefix)
 {
