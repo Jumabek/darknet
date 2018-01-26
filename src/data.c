@@ -277,6 +277,7 @@ void fill_truth_swag(char *path, float *truth, int classes, int flip, float dx, 
     find_replace(labelpath, ".jpg", ".txt", labelpath);
     find_replace(labelpath, ".JPG", ".txt", labelpath);
     find_replace(labelpath, ".JPEG", ".txt", labelpath);
+	find_replace(labelpath, ".jpeg", ".txt", labelpath);
 
     int count = 0;
     box_label *boxes = read_boxes(labelpath, &count);
@@ -314,6 +315,7 @@ void fill_truth_region(char *path, float *truth, int classes, int num_boxes, int
     find_replace(labelpath, "JPEGImages", "labels", labelpath);
 
     find_replace(labelpath, ".jpg", ".txt", labelpath);
+	find_replace(labelpath, ".jpeg", ".txt", labelpath);
     find_replace(labelpath, ".png", ".txt", labelpath);
     find_replace(labelpath, ".JPG", ".txt", labelpath);
     find_replace(labelpath, ".JPEG", ".txt", labelpath);
@@ -364,6 +366,7 @@ void fill_truth_detection(char *path, int num_boxes, float *truth, int classes, 
 
     find_replace(labelpath, "raw", "labels", labelpath);
     find_replace(labelpath, ".jpg", ".txt", labelpath);
+	find_replace(labelpath, ".jpeg", ".txt", labelpath);
     find_replace(labelpath, ".png", ".txt", labelpath);
     find_replace(labelpath, ".JPG", ".txt", labelpath);
     find_replace(labelpath, ".JPEG", ".txt", labelpath);
@@ -473,6 +476,7 @@ void fill_grid_truth(char *path, float *truth, int classes, int w, int h)
 	find_replace(labelpath, ".png", ".txt", labelpath);
 	find_replace(labelpath, ".JPG", ".txt", labelpath);
 	find_replace(labelpath, ".JPEG", ".txt", labelpath);
+	find_replace(labelpath, ".jpeg", ".txt", labelpath);
 	int count = 0;
 
 	patch_label *patches = read_patches(labelpath, &count);
