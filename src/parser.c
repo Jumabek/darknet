@@ -48,7 +48,6 @@ LAYER_TYPE string_to_layer_type(char * type)
     if (strcmp(type, "[detection]")==0) return DETECTION;
     if (strcmp(type, "[region]")==0) return REGION;
 	if (strcmp(type, "[patch_region]") == 0) return PATCH_REGION;
-	if (strcmp(type, "[region_ambiguous]") == 0) return REGION_AMBIGUOUS;
     if (strcmp(type, "[local]")==0) return LOCAL;
     if (strcmp(type, "[conv]")==0
             || strcmp(type, "[convolutional]")==0) return CONVOLUTIONAL;

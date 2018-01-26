@@ -35,8 +35,7 @@ typedef enum {
     REGION,
     REORG,
     BLANK,
-	PATCH_REGION,
-	REGION_AMBIGUOUS
+	PATCH_REGION
 } LAYER_TYPE;
 
 typedef enum{
