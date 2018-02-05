@@ -179,7 +179,7 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 		printf("processing paths[%d] = %s\n", count, paths[count]);
 
 		//image im = load_image_color(paths[count], 0, 0);
-		image im = load_image_color_with_firemask(paths[count], 0, 0);
+		image im = load_image_color(paths[count], 0, 0);
 		image sized = resize_image(im, net.w, net.h);
 		layer l = net.layers[net.n - 1];
 

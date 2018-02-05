@@ -132,7 +132,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;..\..\3rdparty\include;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir);$(cudnn)\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENCV;_TIMESPEC_DEFINED;_CRT_SECURE_NO_WARNINGS;GPU;WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions); CUDNN</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENCV;_TIMESPEC_DEFINED;_CRT_SECURE_NO_WARNINGS;GPU;WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions); CUDNN;_CRT_NONSTDC_NO_DEPRECATE</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <PrecompiledHeaderCompileAs>CompileAsCpp</PrecompiledHeaderCompileAs>
@@ -211,6 +211,7 @@
     <ClCompile Include="..\..\src\local_layer.c" />
     <ClCompile Include="..\..\src\matrix.c" />
     <ClCompile Include="..\..\src\maxpool_layer.c" />
+    <ClCompile Include="..\..\src\motion_patch_classifier.c" />
     <ClCompile Include="..\..\src\network.c" />
     <ClCompile Include="..\..\src\nightmare.c" />
     <ClCompile Include="..\..\src\normalization_layer.c" />
