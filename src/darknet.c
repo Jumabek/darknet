@@ -32,6 +32,7 @@ extern void run_go(int argc, char **argv);
 extern void run_art(int argc, char **argv);
 extern void run_super(int argc, char **argv);
 extern void run_patch_classifier(int argc, char **argv);
+extern void run_motion_patch_classifier(int argc, char **argv);
 
 void average(int argc, char *argv[])
 {
@@ -402,6 +403,8 @@ int main(int argc, char **argv)
         run_classifier(argc, argv);
 	}else if (0 == strcmp(argv[1], "patch_classifier")) {
 		run_patch_classifier(argc, argv);
+	}else if (0 == strcmp(argv[1], "motion_patch_classifier")) {
+		run_motion_patch_classifier(argc, argv);
     } else if (0 == strcmp(argv[1], "art")){
         run_art(argc, argv);
     } else if (0 == strcmp(argv[1], "tag")){
