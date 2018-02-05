@@ -72,7 +72,7 @@ image float_to_image(int w, int h, int c, float *data);
 image copy_image(image p);
 image load_image(char *filename, int w, int h, int c);
 image load_image_color(char *filename, int w, int h);
-image load_image_color_with_firemask(char *filename, int w, int h);
+image load_image_color_with_motion(char *filename,char* filename_prev, int w, int h);
 image **load_alphabet();
 
 float get_pixel(image m, int x, int y, int c);
