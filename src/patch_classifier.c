@@ -60,9 +60,6 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 	list *plist = get_paths(train_images);
 	//int N = plist->size;
 	char **paths = (char **)list_to_array(plist);
-
-
-
 	load_args args = { 0 };
 	args.w = net.w;
 	args.h = net.h;
