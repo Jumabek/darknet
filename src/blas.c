@@ -197,7 +197,6 @@ void l2_cpu_batch(int batch, int w, int h, int classes, float *pred, float *trut
 					index = b*h*w*classes + j*w*classes + i*classes + c;
 					if ((c ==back_cls_id && truth[index] == -1) ) {
 						error[index] = 0;
-						error[index] = 0;
 						delta[index] = 0;
 						//printf("Error[%d] = %f\t delta[%d] = %f\n", index, error[index], index, delta[index]);
 					}
