@@ -121,6 +121,124 @@ void train_patch_classifier(char *datacfg, char *cfgfile, char *weightfile, int 
 	save_weights(net, buff);
 }
 
+void test_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, float iter_in_k, char* pr_rc_filename, int vis_detections, int save_detections) {
+	int i, j, c, index;
+
+
+	network net = parse_network_cfg(cfgfile);
+	if (weightfile) {
+		load_weights(&net, weightfile);
+	}
+	set_batch_network(&net, 1);
+	srand(time(0));
+
+	list* options = read_data_cfg(datacfg);
+
+	char* valid_list = option_find_str(options, "test", "data/test.list");
+	int classes = option_find_int(options, "classes", 3);
+	list* plist = get_paths(valid_list);
+
+	int m = plist->size;
+
+	layer l = net.layers[net.n - 1];
+
+	char **paths = (char **)list_to_array(plist);
+
+
+	clock_t time;
+	int count = 0;
+	float TP_fire = 0;
+	float FP_fire = 0;
+	float TP_smoke = 0;
+	float FP_smoke = 0;
+
+	float FN_fire = 0;
+	float FN_smoke = 0;
+
+	float TN = 0;
+
+	const int background_cls_id = l.classes - 1;
+	const int fire_cls_id = 0;
+	const int smoke_cls_id = 1;
+
+	int num_background_cls = 0;
+	FILE * file = fopen(pr_rc_filename, "r");
+
+	//put a header to log file if it is opening for the first time
+	if (file) {
+		fclose(file);
+		file = fopen(pr_rc_filename, "a+");
+	}
+	else {
+		file = fopen(pr_rc_filename, "w");
+		printf(file, "iter_in_k \t FirePrecision \t FireRecall \t SmokePrecision \t SmokeRecall\n");
+	}
+
+	while (count < m) {
+		time = clock();
+		printf("processing paths[%d] = %s\n", count, paths[count]);
+
+		//image im = load_image_color(paths[count], 0, 0);
+		image im = load_image_color(paths[count], 0, 0);
+		image sized = resize_image(im, net.w, net.h);
+		layer l = net.layers[net.n - 1];
+
+		float *X = sized.data;
+		float *predictions = network_predict(net, X);
+
+		float *truths = calloc(l.w*l.h*l.classes, sizeof(float));
+		fill_grid_truth(paths[count], truths, l.classes, l.w, l.h);
+
+		for (j = 0; j < l.h; j++) {
+			for (i = 0; i < l.w; i++) {
+				index = j*l.w*l.classes + i*l.classes;
+				if (truths[index + background_cls_id] == -1) continue; //it means this ambiguous cell				
+				int cls_id = max_index(truths + index, l.classes);
+				int prediction = max_index(predictions + index, l.classes);
+
+				if (prediction == background_cls_id) {
+					if (prediction == cls_id) TN++;
+					else {
+						if (cls_id == fire_cls_id) FN_fire++;
+						else if (cls_id == smoke_cls_id) FN_smoke++;
+						else {
+							printf("false negative has to be either fire or smoke\n");
+							system("pause");
+							return 0;
+						}
+					}
+				}
+				else if (prediction == fire_cls_id) {
+					if (prediction == cls_id) TP_fire++;
+					else FP_fire++;
+				}
+				else if (prediction == smoke_cls_id) {
+					if (prediction == cls_id)TP_smoke++;
+					else FP_smoke++;
+				}
+			}
+		}
+		if (vis_detections) {
+			draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+			show_image(sized, "predictions");
+			cvWaitKey(40);
+		}
+		if (save_detections) {
+			draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+			char str[1024];
+			find_replace(paths[count], "images", "detect_images", str);
+			save_image(sized, str);
+		}
+		//free(predictions);
+		free(truths);
+		free_image(im);
+		free_image(sized);
+		count++;
+	}
+
+	fprintf(file, "%0.1f:  %f   %f   %f   %f\n", iter_in_k, TP_fire / (TP_fire + FP_fire), TP_fire / (TP_fire + FN_fire), TP_smoke / (TP_smoke + FP_smoke), TP_smoke / (TP_smoke + FN_smoke));
+}
+
 void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, float iter_in_k, char* pr_rc_filename, int vis_detections, int save_detections) {
 	int i, j, c, index;
 
@@ -213,6 +331,125 @@ void validate_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, f
 					else FP_fire++;
 				}
 				else if (prediction == smoke_cls_id) {
+					if (prediction == cls_id)TP_smoke++;
+					else FP_smoke++;
+				}
+			}
+		}
+		if (vis_detections) {
+			draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+			show_image(sized, "predictions");
+			cvWaitKey(40);
+		}
+		if (save_detections) {
+			draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+			char str[1024];
+			find_replace(paths[count], "images", "detect_images", str);
+			save_image(sized, str);
+		}
+		//free(predictions);
+		free(truths);
+		free_image(im);
+		free_image(sized);
+		count++;
+	}
+
+	fprintf(file, "%0.1f:  %f   %f   %f   %f\n", iter_in_k, TP_fire / (TP_fire + FP_fire), TP_fire / (TP_fire + FN_fire), TP_smoke / (TP_smoke + FP_smoke), TP_smoke / (TP_smoke + FN_smoke));
+}
+
+void validate_refined_patch_classifier(char* datacfg, char* cfgfile, char* weightfile, float iter_in_k, char* pr_rc_filename, int vis_detections, int save_detections) {
+	int i, j, c, index;
+
+
+	network net = parse_network_cfg(cfgfile);
+	if (weightfile) {
+		load_weights(&net, weightfile);
+	}
+	set_batch_network(&net, 1);
+	srand(time(0));
+
+	list* options = read_data_cfg(datacfg);
+
+	char* valid_list = option_find_str(options, "valid_refined", "data/valid.list");
+	int classes = option_find_int(options, "classes", 3);
+	list* plist = get_paths(valid_list);
+
+	int m = plist->size;
+
+	layer l = net.layers[net.n - 1];
+
+	char **paths = (char **)list_to_array(plist);
+
+
+	clock_t time;
+	int count = 0;
+	const int AMBIGUOUS_CLS_ID = -1;
+	float TP_fire = 0;
+	float FP_fire = 0;
+	float TP_smoke = 0;
+	float FP_smoke = 0;
+
+	float FN_fire = 0;
+	float FN_smoke = 0;
+
+	float TN = 0;
+
+	const int background_cls_id = l.classes - 1;
+	const int fire_cls_id = 0;
+	const int smoke_cls_id = 1;
+
+	int num_background_cls = 0;
+	FILE * file = fopen(pr_rc_filename, "r");
+
+	//put a header to log file if it is opening for the first time
+	if (file) {
+		fclose(file);
+		file = fopen(pr_rc_filename, "a+");
+	}
+	else {
+		file = fopen(pr_rc_filename, "w");
+		printf(file, "iter_in_k \t FirePrecision \t FireRecall \t SmokePrecision \t SmokeRecall\n");
+	}
+
+	while (count < m) {
+		time = clock();
+		printf("processing paths[%d] = %s\n", count, paths[count]);
+
+		//image im = load_image_color(paths[count], 0, 0);
+		image im = load_image_color(paths[count], 0, 0);
+		image sized = resize_image(im, net.w, net.h);
+		layer l = net.layers[net.n - 1];
+
+		float *X = sized.data;
+		float *predictions = network_predict(net, X);
+
+		float *truths = calloc(l.w*l.h*l.classes, sizeof(float));
+		fill_grid_truth(paths[count], truths, l.classes, l.w, l.h);
+
+		for (j = 0; j < l.h; j++) {
+			for (i = 0; i < l.w; i++) {
+				index = j*l.w*l.classes + i*l.classes;
+				if (truths[index + background_cls_id] == -1) continue; //it means this ambiguous cell				
+				int cls_id = max_index(truths + index, l.classes);
+				int prediction = max_index(predictions + index, l.classes);
+
+				if (prediction == background_cls_id) {
+					if (prediction == cls_id) TN++;
+					else {
+						if (cls_id == fire_cls_id) FN_fire++;
+						else if (cls_id == smoke_cls_id) FN_smoke++;
+						else {
+							printf("false negative has to be either fire or smoke\n");
+							system("pause");
+							return 0;
+						}
+					}
+				}
+				else if (prediction == fire_cls_id && cls_id!=AMBIGUOUS_CLS_ID) {
+					if (prediction == cls_id) TP_fire++;
+					else FP_fire++;
+				}
+				else if (prediction == smoke_cls_id && cls_id != AMBIGUOUS_CLS_ID ) {
 					if (prediction == cls_id)TP_smoke++;
 					else FP_smoke++;
 				}
@@ -380,7 +617,148 @@ void validate_patch_classifier_globally(char* datacfg, char* cfgfile, char* weig
 	fclose(file);
 }
 
-void test_patch_classifier(char* datacfg, char *cfgfile, char* weightfile, char *filename) {
+void test_patch_classifier_globally(char* datacfg, char* cfgfile, char* weightfile, float iter_in_k, char* pr_rc_filename, int vis_detections, int save_detections) {
+	int i, j, c, index;
+
+
+	network net = parse_network_cfg(cfgfile);
+	if (weightfile) {
+		load_weights(&net, weightfile);
+	}
+	set_batch_network(&net, 1);
+	srand(time(0));
+
+	list* options = read_data_cfg(datacfg);
+
+	char* valid_list = option_find_str(options, "test", "data/test.list");
+	int classes = option_find_int(options, "classes", 3);
+	list* plist = get_paths(valid_list);
+
+	int m = plist->size;
+
+	layer l = net.layers[net.n - 1];
+
+	char **paths = (char **)list_to_array(plist);
+
+
+	clock_t time;
+	int count = 0;
+	float TP_fire = 0;
+	float FP_fire = 0;
+	float TP_smoke = 0;
+	float FP_smoke = 0;
+
+	float FN_fire = 0;
+	float FN_smoke = 0;
+
+	float TN = 0;
+
+	const int background_cls_id = l.classes - 1;
+	const int fire_cls_id = 0;
+	const int smoke_cls_id = 1;
+
+	int num_background_cls = 0;
+	FILE * file = fopen(pr_rc_filename, "r");
+
+	//put a header to log file if it is opening for the first time
+	if (file) {
+		fclose(file);
+		file = fopen(pr_rc_filename, "a+");
+	}
+	else {
+		file = fopen(pr_rc_filename, "w");
+		printf(file, "iter_in_k \t FirePrecision \t FireRecall \t SmokePrecision \t SmokeRecall\n");
+	}
+	int isFire = 0;
+	int firePredicted = 0;
+	int isSmoke = 0;
+	int smokePredicted = 0;
+
+	while (count < m) {
+		time = clock();
+		printf("processing paths[%d] = %s\n", count, paths[count]);
+
+		image im = load_image_color(paths[count], 0, 0);
+		image sized = resize_image(im, net.w, net.h);
+		layer l = net.layers[net.n - 1];
+
+		float *X = sized.data;
+		float *predictions = network_predict(net, X);
+
+		float *truths = calloc(l.w*l.h*l.classes, sizeof(float));
+		fill_grid_truth(paths[count], truths, l.classes, l.w, l.h);
+		int positive = 0;
+		isFire = 0;
+		firePredicted = 0;
+		isSmoke = 0;
+		smokePredicted = 0;
+
+		for (j = 0; j < l.h; j++) {
+			for (i = 0; i < l.w; i++) {
+
+				index = j*l.w*l.classes + i*l.classes;
+				if (truths[index + background_cls_id] == -1) continue; //it means this ambiguous cell				
+				int cls_id = max_index(truths + index, l.classes);
+
+				if (cls_id == fire_cls_id) {
+					isFire = 1;
+				}
+				else if (cls_id == smoke_cls_id) {
+					isSmoke = 1;
+				}
+
+				int prediction = max_index(predictions + index, l.classes);
+				if (prediction == fire_cls_id) {
+					firePredicted = 1;
+				}
+				else if (prediction == smoke_cls_id) {
+					smokePredicted = 1;
+				}
+			}
+		}
+		if (isFire)
+			if (firePredicted)
+				TP_fire++;
+			else
+				FN_fire++;
+		else
+			if (firePredicted)
+				FP_fire++;
+
+
+		if (isSmoke)
+			if (smokePredicted)
+				TP_smoke++;
+			else
+				FN_smoke++;
+		else
+			if (smokePredicted)
+				FP_smoke++;
+
+
+		if (vis_detections) {
+			draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+			show_image(sized, "predictions");
+			cvWaitKey(40);
+		}
+		if (save_detections) {
+			draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+			char str[1024];
+			find_replace(paths[count], "images", "detect_images", str);
+			save_image(sized, str);
+		}
+		//free(predictions);
+		free(truths);
+		free_image(im);
+		free_image(sized);
+		count++;
+	}
+
+	fprintf(file, "%0.1f:  %f   %f   %f   %f\n", iter_in_k, TP_fire / (TP_fire + FP_fire), TP_fire / (TP_fire + FN_fire), TP_smoke / (TP_smoke + FP_smoke), TP_smoke / (TP_smoke + FN_smoke));
+	fclose(file);
+}
+
+void test_patch_classifier_old(char* datacfg, char *cfgfile, char* weightfile, char *test_list) {
 	network net = parse_network_cfg(cfgfile);
 	if (weightfile) {
 		load_weights(&net, weightfile);
@@ -389,33 +767,49 @@ void test_patch_classifier(char* datacfg, char *cfgfile, char* weightfile, char 
 
 	clock_t time;
 
-	image im = load_image_color(filename, 0, 0);
-	image sized = resize_image(im, net.w, net.h);
+	list* plist = get_paths(test_list);
+
+	int m = plist->size;
+
 	layer l = net.layers[net.n - 1];
 
-	float *X = sized.data;
-	float *predictions = network_predict(net, X);
+	char **paths = (char **)list_to_array(plist);
 
-	int i, j,c;
-	
-	for (j = 0; j < l.h; j++){
-		for (i = 0; i < l.w; i++) {
-			printf("(%d,%d) (", j, i );
-			for (c = 0; c < l.classes - 1; c++) {
-				int index = j*l.w*l.classes + i*l.classes + c;
-				printf("%f,", predictions[index]);
+	int count = 0;
+
+	while (count < m) {
+		image im = load_image_color(paths[count], 0, 0);
+		image sized = resize_image(im, net.w, net.h);
+		layer l = net.layers[net.n - 1];
+
+		float *X = sized.data;
+		float *predictions = network_predict(net, X);
+
+		int i, j, c;
+
+		for (j = 0; j < l.h; j++) {
+			for (i = 0; i < l.w; i++) {
+				printf("(%d,%d) (", j, i);
+				for (c = 0; c < l.classes - 1; c++) {
+					int index = j*l.w*l.classes + i*l.classes + c;
+					printf("%f,", predictions[index]);
+				}
+				int index = j*l.w*l.classes + i*l.classes + (l.classes - 1);
+				printf("%f)\n", predictions[index]);
 			}
-			int index = j*l.w*l.classes + i*l.classes + (l.classes-1);
-			printf("%f)\n", predictions[index]);
 		}
+
+		draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
+		show_image(sized, "predictions");
+		cvWaitKey(1);
+
+		char str[1024];
+		find_replace(paths[count++], "images", "detect_images", str);
+		save_image(sized, str);
+
+		free_image(im);
+		free_image(sized);
 	}
-
-	draw_patch_detections(sized, predictions, l.w, l.h, l.classes);
-	show_image(sized, "predictions");
-	cvWaitKey(0);
-
-	free_image(im);
-	free_image(sized);
 
 	cvDestroyAllWindows();
 	system("pause");
@@ -469,9 +863,11 @@ void run_patch_classifier(int argc, char **argv)
 	char *cfg = argv[4];
 	char *weights = (argc > 5) ? argv[5] : 0;
 	char *filename = (argc > 6) ? argv[6] : 0;
-	if (0 == strcmp(argv[2], "test")) test_patch_classifier(datacfg, cfg, weights, filename);
+	if (0 == strcmp(argv[2], "test_global")) test_patch_classifier_globally(datacfg, cfg, weights, iter_in_k, pr_rc_filename, vis_detections, save_detections);
+	else if (0 == strcmp(argv[2], "test")) test_patch_classifier(datacfg, cfg, weights, iter_in_k, pr_rc_filename, vis_detections, save_detections);
 	else if (0 == strcmp(argv[2], "train")) train_patch_classifier(datacfg, cfg, weights, gpus, ngpus, clear);
 	else if (0 == strcmp(argv[2], "valid")) validate_patch_classifier(datacfg, cfg, weights,iter_in_k,pr_rc_filename,vis_detections,save_detections);
+	else if (0 == strcmp(argv[2], "valid_refined")) validate_refined_patch_classifier(datacfg, cfg, weights, iter_in_k, pr_rc_filename, vis_detections, save_detections);
 	else if (0 == strcmp(argv[2], "valid_global")) validate_patch_classifier_globally(datacfg, cfg, weights, iter_in_k, pr_rc_filename, vis_detections, save_detections);
 	else if (0 == strcmp(argv[2], "recall")) validate_detector_recall(cfg, weights);
 	else if (0 == strcmp(argv[2], "demo")) {
@@ -479,11 +875,5 @@ void run_patch_classifier(int argc, char **argv)
 		int classes = option_find_int(options, "classes", 20);
 		
 		demo_patch_classifier(cfg, weights, thresh, cam_index, filename, classes, frame_skip, prefix);
-	}
-	else if (0 == strcmp(argv[2], "demo_motion")) {
-		list *options = read_data_cfg(datacfg);
-		int classes = option_find_int(options, "classes", 20);
-
-		demo_patch_classifier_motion(cfg, weights, thresh, cam_index, filename, classes, frame_skip, prefix);
 	}
 }
