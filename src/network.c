@@ -146,15 +146,26 @@ void forward_network(network net, network_state state)
 {
     state.workspace = net.workspace;
     int i;
+	float wsum = 0;
     for(i = 0; i < net.n; ++i){
         state.index = i;
         layer l = net.layers[i];
+		
+		if (net.L2_reg) {
+			float* weights = l.weights;
+			int w_size = l.c*l.n*l.size*l.size;
+			for (int i = 0; i < w_size; i++) {
+				wsum += abs(weights[i]);
+			}
+		}
         if(l.delta){
             scal_cpu(l.outputs * l.batch, 0, l.delta, 1);
         }
         l.forward(l, state);
-        state.input = l.output;
+        state.input = l.output;		
     }
+	state.l2_reg = wsum/net.batch;
+
 }
 
 void update_network(network net)
@@ -235,6 +246,7 @@ float train_network_datum(network net, float *x, float *y)
     state.delta = 0;
     state.truth = y;
     state.train = 1;
+	state.l2_reg = 0;
     forward_network(net, state);
     backward_network(net, state);
     float error = get_network_cost(net);
