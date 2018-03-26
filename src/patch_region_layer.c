@@ -63,9 +63,6 @@ void patch_resize_region_layer(layer *l, int w, int h)
 #endif
 }
 
-
-
-
 void forward_patch_region_layer(const patch_region_layer l, network_state state)
 {
 	int i, j, b;
@@ -88,9 +85,7 @@ void forward_patch_region_layer(const patch_region_layer l, network_state state)
 	memset(l.delta, 0, l.outputs*l.batch * sizeof(float));
 	*(l.cost) = 0;
 
-	
 	l2_cpu_batch(l.batch,l.w,l.h,l.classes, l.output, state.truth, l.delta, l.output,l.class_scales);
-
 	l.cost[0] = sum_array_batch(l.output, l.inputs, l.batch);
 }
 
@@ -98,7 +93,6 @@ void backward_patch_region_layer(const patch_region_layer l, network_state state
 {
 	axpy_cpu(l.batch*l.inputs, 1, l.delta, 1, state.delta, 1);
 }
-
 
 
 #ifdef GPU
