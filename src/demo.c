@@ -47,12 +47,12 @@ static float *avg;
 void draw_detections_cv(IplImage* show_img, int num, float thresh, box *boxes, float **probs, char **names, image **alphabet, int classes);
 void draw_patch_detections_cv(IplImage* show_img, float *predictions, int w, int h, int classes);
 image get_image_from_stream_resize(CvCapture *cap, int w, int h, IplImage** in_img);
-image get_image_from_stream_resize_with_firemask(CvCapture *cap, int w, int h, IplImage** in_img);
-image get_image_from_stream_resize_with_firemask_and_motion(CvCapture *cap, int w, int h, IplImage** in_img);
+//image get_image_from_stream_resize_with_mask(CvCapture *cap, int w, int h, IplImage** in_img, IplImage** in_mask_img);
 IplImage* in_img;
 IplImage* det_img;
 IplImage* show_img;
 
+/*
 void *fetch_in_thread_with_firemask(void *ptr)
 {
     //in = get_image_from_stream(cap);
@@ -66,6 +66,8 @@ void *fetch_in_thread_with_firemask(void *ptr)
 	
     return 0;
 }
+
+*/
 
 void *fetch_in_thread(void *ptr)
 {
@@ -417,6 +419,7 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 			detect_in_thread(0);
 			if (delay == 0) {
 				free_image(disp);
+
 				disp = det;
 			}
 			show_image(disp, "Demo");
@@ -434,8 +437,8 @@ void demo_patch_classifier(char *cfgfile, char *weightfile, float thresh, int ca
 	}
 }
 
-
-void demo_patch_classifier_motion(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, int classes, int frame_skip)
+/*
+void demo_patch_classifier_with_mask(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, int classes, int frame_skip)
 {
 	//skip = frame_skip;
 	int BUFSIZE = 1000;
@@ -444,7 +447,6 @@ void demo_patch_classifier_motion(char *cfgfile, char *weightfile, float thresh,
 	dwRet = GetCurrentDirectory(BUFSIZE, Buffer);
 	sprintf(Buffer, "%s/x64", Buffer);
 	SetCurrentDirectory(Buffer);
-
 
 	int delay = frame_skip;
 	demo_classes = classes;
@@ -564,7 +566,7 @@ void demo_patch_classifier_motion(char *cfgfile, char *weightfile, float thresh,
 		}
 	}
 }
-
+*/
 
 void demo_patch_classifier_old(char *cfgfile, char *weightfile, float thresh, int cam_index, const char *filename, char **names, int classes, int frame_skip, char *prefix)
 {
