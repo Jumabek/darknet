@@ -586,6 +586,7 @@ void parse_net_options(list *options, network *net)
     net->batch *= net->time_steps;
     net->subdivisions = subdivs;
 
+	net->L2_reg = option_find_int_quiet(options, "L2_reg", 0);
     net->adam = option_find_int_quiet(options, "adam", 0);
     if(net->adam){
         net->B1 = option_find_float(options, "B1", .9);
