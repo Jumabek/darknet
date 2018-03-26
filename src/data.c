@@ -92,44 +92,6 @@ char **find_replace_paths(char **paths, int n, char *find, char *replace)
     return replace_paths;
 }
 
-matrix load_image_paths_gray(char **paths, int n, int w, int h)
-{
-    int i;
-    matrix X;
-    X.rows = n;
-    X.vals = calloc(X.rows, sizeof(float*));
-    X.cols = 0;
-
-    for(i = 0; i < n; ++i){
-        image im = load_image(paths[i], w, h, 3);
-
-        image gray = grayscale_image(im);
-        free_image(im);
-        im = gray;
-
-        X.vals[i] = im.data;
-        X.cols = im.h*im.w*im.c;
-    }
-    return X;
-}
-
-matrix load_image_paths(char **paths, int n, int w, int h)
-{
-    int i;
-    matrix X;
-    X.rows = n;
-    X.vals = calloc(X.rows, sizeof(float*));
-    X.cols = 0;
-
-    for(i = 0; i < n; ++i){
-//        image im = load_image_color_with_firemask(paths[i], w, h);
-		image im = load_image_color(paths[i], w, h);
-        X.vals[i] = im.data;
-        X.cols = im.h*im.w*im.c;
-    }
-    return X;
-}
-
 char** str_split(char* a_str, const char a_delim)
 {
 	char** result = 0;
@@ -174,7 +136,7 @@ char** str_split(char* a_str, const char a_delim)
 			*(result + idx++) = strdup(token);
 			token = strtok(0, delim);
 		}
-		if (idx != count-1) {
+		if (idx != count - 1) {
 			printf("Error in str_split idx != count-1\n");
 			exit(0);
 		}
@@ -184,37 +146,58 @@ char** str_split(char* a_str, const char a_delim)
 	return result;
 }
 
-matrix load_image_paths_motion(char **paths, int n, int w, int h)
+matrix load_image_paths_gray(char **paths, int n, int w, int h)
+{
+    int i;
+    matrix X;
+    X.rows = n;
+    X.vals = calloc(X.rows, sizeof(float*));
+    X.cols = 0;
+
+    for(i = 0; i < n; ++i){
+        image im = load_image(paths[i], w, h, 3);
+
+        image gray = grayscale_image(im);
+        free_image(im);
+        im = gray;
+
+        X.vals[i] = im.data;
+        X.cols = im.h*im.w*im.c;
+    }
+    return X;
+}
+
+matrix load_image_paths(char **paths, int n, int w, int h)
+{
+    int i;
+    matrix X;
+    X.rows = n;
+    X.vals = calloc(X.rows, sizeof(float*));
+    X.cols = 0;
+
+    for(i = 0; i < n; ++i){
+		image im = load_image_color(paths[i], w, h);
+        X.vals[i] = im.data;
+        X.cols = im.h*im.w*im.c;
+    }
+    return X;
+}
+
+matrix load_image_paths_with_mask(char **paths, int n, int w, int h)
 {
 	int i;
 	matrix X;
 	X.rows = n;
 	X.vals = calloc(X.rows, sizeof(float*));
 	X.cols = 0;
-	for (i = 0; i < n; ++i) {
-		char* path = calloc(strlen(paths[i]),sizeof(char));
-		strncpy(path, paths[i], strlen(paths[i]));
 
-		char** tokens = str_split(path,'\t');
-		if (!tokens)
-		{
-			printf("Error occured in reading images\n");
-			exit(0);
-		}
-		image im;
-		if (*(tokens + 0) && *(tokens + 1)) {
-				im= load_image_color_with_motion(*(tokens + 0), *(tokens + 1), w, h);
-				free(*(tokens + 0));
-				free(*(tokens + 1));
-			}		
-		free(tokens);
-		free(path);
+	for (i = 0; i < n; ++i) {
+		image im = load_image_color_with_mask(paths[i], w, h);
 		X.vals[i] = im.data;
 		X.cols = im.h*im.w*im.c;
 	}
 	return X;
 }
-
 
 matrix load_image_augment_paths(char **paths, int n, int min, int max, int size, float angle, float aspect, float hue, float saturation, float exposure)
 {
@@ -663,36 +646,6 @@ matrix load_labels_patches(char **paths, int n, int classes, int grid_w, int gri
 	return y;
 }
 
-matrix load_labels_patches_motion(char **paths, int n, int classes, int grid_w, int grid_h)
-{
-	int size = grid_w*grid_h*classes;
-	matrix y = make_matrix(n, size); //each cell has 'classes' channel
-	int i;
-	for (i = 0; i < n; ++i) {
-		char* path = calloc(strlen(paths[i]), sizeof(char));
-		strncpy(path, paths[i], strlen(paths[i]));
-
-		char** tokens = str_split(path, '\t');
-		if (!tokens)
-		{
-			printf("Error occured in reading images\n");
-			exit(0);
-		}
-		image im;
-		if (*(tokens + 0) && *(tokens + 1)) {			
-			fill_grid_truth(*(tokens + 0), y.vals[i], classes, grid_w, grid_h);
-			free(*(tokens + 0));
-			free(*(tokens + 1));
-		}
-		free(tokens);
-		free(path);
-	}
-
-
-	return y;
-}
-
-
 matrix load_tags_paths(char **paths, int n, int k)
 {
     matrix y = make_matrix(n, k);
@@ -1034,8 +987,8 @@ void *load_thread(void *ptr)
 	else if (a.type == PATCH_CLASSIFICATION_DATA) {
 		*a.d = load_data_patch(a.paths, a.n, a.m, a.classes,a.w,a.h, a.grid_w, a.grid_h);
 	}
-	else if (a.type == PATCH_CLASSIFICATION_DATA_WITH_MOTION) {
-		*a.d = load_data_patch_motion(a.paths, a.n, a.m, a.classes, a.w, a.h, a.grid_w, a.grid_h);
+	else if (a.type == PATCH_CLASSIFICATION_DATA_WITH_MASK) {
+		*a.d = load_data_patch_mask(a.paths, a.n, a.m, a.classes, a.w, a.h, a.grid_w, a.grid_h);
 	}else if (a.type == CLASSIFICATION_DATA){
         *a.d = load_data_augment(a.paths, a.n, a.m, a.labels, a.classes, a.hierarchy, a.min, a.max, a.size, a.angle, a.aspect, a.hue, a.saturation, a.exposure);
     } else if (a.type == SUPER_DATA){
@@ -1147,13 +1100,13 @@ data load_data_patch(char **paths, int n, int m, int classes,int w, int h, int g
 	return d;
 }
 
-data load_data_patch_motion(char **paths, int n, int m, int classes, int w, int h, int grid_w, int grid_h)
+data load_data_patch_mask(char **paths, int n, int m, int classes, int w, int h, int grid_w, int grid_h)
 {
 	if (m) paths = get_random_paths(paths, n, m);
 	data d = { 0 };
 	d.shallow = 0;
-	d.X = load_image_paths_motion(paths, n, w, h);
-	d.y = load_labels_patches_motion(paths, n, classes, grid_w, grid_h);
+	d.X = load_image_paths_with_mask(paths, n, w, h);
+	d.y = load_labels_patches(paths, n, classes, grid_w, grid_h);
 	if (m) free(paths);
 	return d;
 }
