@@ -41,7 +41,8 @@ typedef struct network{
     int   *steps;
     int num_steps;
     int burn_in;
-
+	
+	int L2_reg;
     int adam;
     float B1;
     float B2;
@@ -71,9 +72,11 @@ typedef struct network_state {
     float *input;
     float *delta;
     float *workspace;
+	float l2_reg;
     int train;
     int index;
     network net;
+
 } network_state;
 
 #ifdef GPU
