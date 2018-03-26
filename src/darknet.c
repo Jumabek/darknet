@@ -12,6 +12,10 @@
 #include "opencv2/highgui/highgui_c.h"
 #endif
 
+#define _CRTDBG_MAP_ALLOC  
+#include <stdlib.h>  
+#include <crtdbg.h>  
+
 extern void predict_classifier(char *datacfg, char *cfgfile, char *weightfile, char *filename, int top);
 extern void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filename, float thresh);
 extern void run_voxel(int argc, char **argv);
@@ -32,8 +36,7 @@ extern void run_go(int argc, char **argv);
 extern void run_art(int argc, char **argv);
 extern void run_super(int argc, char **argv);
 extern void run_patch_classifier(int argc, char **argv);
-extern void run_motion_patch_classifier(int argc, char **argv);
-
+extern void run_patch_classifier_with_mask(int argc, char **argv);
 void average(int argc, char *argv[])
 {
     char *cfgfile = argv[2];
@@ -355,6 +358,8 @@ int main(int argc, char **argv)
     //test_resize("data/bad.jpg");
     //test_box();
     //test_convolutional_layer();
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_DEBUG);
     if(argc < 2){
         fprintf(stderr, "usage: %s <function>\n", argv[0]);
         return 0;
@@ -401,10 +406,10 @@ int main(int argc, char **argv)
         predict_classifier("cfg/imagenet1k.data", argv[2], argv[3], argv[4], 5);
     } else if (0 == strcmp(argv[1], "classifier")){
         run_classifier(argc, argv);
-	}else if (0 == strcmp(argv[1], "patch_classifier")) {
+	} else if (0 == strcmp(argv[1], "patch_classifier")) {
 		run_patch_classifier(argc, argv);
-	}else if (0 == strcmp(argv[1], "motion_patch_classifier")) {
-		run_motion_patch_classifier(argc, argv);
+	} else if (0 == strcmp(argv[1], "patch_classifier_with_mask")) {
+		run_patch_classifier_with_mask(argc, argv);
     } else if (0 == strcmp(argv[1], "art")){
         run_art(argc, argv);
     } else if (0 == strcmp(argv[1], "tag")){
