@@ -211,7 +211,7 @@
     <ClCompile Include="..\..\src\local_layer.c" />
     <ClCompile Include="..\..\src\matrix.c" />
     <ClCompile Include="..\..\src\maxpool_layer.c" />
-    <ClCompile Include="..\..\src\motion_patch_classifier.c" />
+    <ClCompile Include="..\..\src\patch_classifier_with_mask.c" />
     <ClCompile Include="..\..\src\network.c" />
     <ClCompile Include="..\..\src\nightmare.c" />
     <ClCompile Include="..\..\src\normalization_layer.c" />
